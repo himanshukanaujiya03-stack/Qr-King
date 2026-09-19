@@ -11,150 +11,728 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 :root{
- --bg:#040611;--card:#0b1225;--card2:#101a34;
- --cyan:#00eaff;--blue:#4d7cff;--purple:#9b5cff;
- --pink:#ff31d2;--green:#35ff9a;--yellow:#ffd84d;
- --text:#f5f7ff;--muted:#9da8c7;
+ --bg:#040611;
+ --card:#0b1225;
+ --card2:#101a34;
+ --cyan:#00eaff;
+ --blue:#4d7cff;
+ --purple:#9b5cff;
+ --pink:#ff31d2;
+ --green:#35ff9a;
+ --yellow:#ffd84d;
+ --text:#f5f7ff;
+ --muted:#9da8c7;
  --border:rgba(0,234,255,.17);
 }
+
 html{scroll-behavior:smooth}
+
 body{
  font-family:Arial,Helvetica,sans-serif;
- color:var(--text);background:
+ color:var(--text);
+ background:
  radial-gradient(circle at 15% 10%,rgba(0,234,255,.12),transparent 30%),
  radial-gradient(circle at 85% 15%,rgba(155,92,255,.12),transparent 30%),
- var(--bg);min-height:100vh;
+ var(--bg);
+ min-height:100vh;
 }
+
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
+
+/* =========================
+   PROFESSIONAL OPENING
+========================= */
+
+#openingScreen{
+ position:fixed;
+ inset:0;
+ z-index:999999;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ overflow:hidden;
+ background:
+ radial-gradient(circle at 50% 45%,#12275b 0%,#07112c 28%,#050816 58%,#010208 100%);
+ animation:openingFadeOut 1.2s ease 6s forwards;
+}
+
+#openingScreen::before{
+ content:"";
+ position:absolute;
+ inset:-50%;
+ background:
+ radial-gradient(circle at 30% 30%,rgba(0,234,255,.12),transparent 20%),
+ radial-gradient(circle at 70% 70%,rgba(155,92,255,.12),transparent 20%);
+ animation:openingBackground 8s linear infinite;
+}
+
+.openingGlow{
+ position:absolute;
+ width:300px;
+ height:300px;
+ border-radius:50%;
+ background:var(--cyan);
+ filter:blur(100px);
+ opacity:.16;
+ animation:openingGlow 2s ease-in-out infinite alternate;
+}
+
+.openingRing{
+ position:absolute;
+ width:205px;
+ height:205px;
+ border:1px solid rgba(0,234,255,.45);
+ border-top-color:var(--cyan);
+ border-bottom-color:var(--purple);
+ border-radius:50%;
+ animation:openingRing 4s linear infinite;
+}
+
+.openingRing2{
+ position:absolute;
+ width:240px;
+ height:240px;
+ border:1px solid rgba(155,92,255,.22);
+ border-left-color:var(--pink);
+ border-radius:50%;
+ animation:openingRing2 7s linear infinite reverse;
+}
+
+.openingProfile{
+ position:relative;
+ z-index:2;
+ width:145px;
+ height:145px;
+ object-fit:cover;
+ border-radius:50%;
+ border:3px solid var(--cyan);
+ box-shadow:
+  0 0 18px var(--cyan),
+  0 0 40px var(--blue),
+  0 0 75px rgba(155,92,255,.7);
+ animation:openingProfile 1.5s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.openingTitle{
+ position:relative;
+ z-index:2;
+ margin-top:25px;
+ font-size:clamp(30px,8vw,48px);
+ font-weight:900;
+ letter-spacing:3px;
+ color:white;
+ text-shadow:
+  0 0 10px var(--cyan),
+  0 0 25px var(--blue),
+  0 0 45px var(--purple);
+ animation:openingText 1.2s ease .5s both;
+}
+
+.openingSub{
+ position:relative;
+ z-index:2;
+ margin-top:10px;
+ color:var(--cyan);
+ font-size:13px;
+ letter-spacing:4px;
+ text-align:center;
+ text-shadow:0 0 15px var(--cyan);
+ animation:openingText 1.2s ease 1s both;
+}
+
+.openingCreator{
+ position:relative;
+ z-index:2;
+ margin-top:12px;
+ color:#b9c4df;
+ font-size:13px;
+ letter-spacing:2px;
+ animation:openingText 1.2s ease 1.3s both;
+}
+
+.openingLoader{
+ position:relative;
+ z-index:2;
+ display:flex;
+ gap:8px;
+ margin-top:28px;
+}
+
+.openingLoader span{
+ width:8px;
+ height:8px;
+ border-radius:50%;
+ background:var(--cyan);
+ box-shadow:0 0 14px var(--cyan);
+ animation:openingDot 1s infinite alternate;
+}
+
+.openingLoader span:nth-child(2){
+ animation-delay:.2s;
+}
+
+.openingLoader span:nth-child(3){
+ animation-delay:.4s;
+}
+
+.openingStatus{
+ position:relative;
+ z-index:2;
+ margin-top:15px;
+ color:#7f8caf;
+ font-size:9px;
+ letter-spacing:3px;
+ animation:openingText 1.2s ease 1.6s both;
+}
+
+.openingLine{
+ position:absolute;
+ z-index:2;
+ bottom:35px;
+ width:150px;
+ height:2px;
+ background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+ box-shadow:0 0 15px var(--cyan);
+ animation:openingLine 2s infinite;
+}
+
+@keyframes openingProfile{
+ from{
+  opacity:0;
+  transform:scale(.2) rotate(-25deg);
+ }
+ to{
+  opacity:1;
+  transform:scale(1) rotate(0);
+ }
+}
+
+@keyframes openingText{
+ from{
+  opacity:0;
+  transform:translateY(25px);
+ }
+ to{
+  opacity:1;
+  transform:translateY(0);
+ }
+}
+
+@keyframes openingGlow{
+ from{
+  transform:scale(.75);
+  opacity:.10;
+ }
+ to{
+  transform:scale(1.35);
+  opacity:.27;
+ }
+}
+
+@keyframes openingRing{
+ from{
+  transform:rotate(0deg) scale(.92);
+ }
+ to{
+  transform:rotate(360deg) scale(1.08);
+ }
+}
+
+@keyframes openingRing2{
+ from{
+  transform:rotate(0deg);
+ }
+ to{
+  transform:rotate(360deg);
+ }
+}
+
+@keyframes openingBackground{
+ from{
+  transform:rotate(0deg) scale(1);
+ }
+ to{
+  transform:rotate(360deg) scale(1.08);
+ }
+}
+
+@keyframes openingDot{
+ from{
+  transform:translateY(0);
+  opacity:.35;
+ }
+ to{
+  transform:translateY(-8px);
+  opacity:1;
+ }
+}
+
+@keyframes openingLine{
+ 0%{
+  transform:scaleX(.5);
+  opacity:.4;
+ }
+ 50%{
+  transform:scaleX(1);
+  opacity:1;
+ }
+ 100%{
+  transform:scaleX(.5);
+  opacity:.4;
+ }
+}
+
+@keyframes openingFadeOut{
+ to{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+ }
+}
+
 header{
- position:sticky;top:0;z-index:1000;
- background:rgba(4,6,17,.88);backdrop-filter:blur(18px);
+ position:sticky;
+ top:0;
+ z-index:1000;
+ background:rgba(4,6,17,.88);
+ backdrop-filter:blur(18px);
  border-bottom:1px solid var(--border)
 }
+
 .nav{
- max-width:1250px;margin:auto;padding:13px 17px;
- display:flex;align-items:center;justify-content:space-between;gap:15px
+ max-width:1250px;
+ margin:auto;
+ padding:13px 17px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px
 }
-.logo{font-size:23px;font-weight:900;color:var(--cyan);text-shadow:0 0 15px #00eaff55}
-.logo small{display:block;font-size:8px;letter-spacing:3px;color:var(--muted)}
+
+.logo{
+ font-size:23px;
+ font-weight:900;
+ color:var(--cyan);
+ text-shadow:0 0 15px #00eaff55
+}
+
+.logo small{
+ display:block;
+ font-size:8px;
+ letter-spacing:3px;
+ color:var(--muted)
+}
+
 .menu-btn{
- background:#101a34;color:white;border:1px solid var(--border);
- padding:9px 12px;border-radius:10px
+ background:#101a34;
+ color:white;
+ border:1px solid var(--border);
+ padding:9px 12px;
+ border-radius:10px
 }
-.hero{text-align:center;padding:42px 16px 25px}
+
+.hero{
+ text-align:center;
+ padding:42px 16px 25px
+}
+
 .profile{
- width:105px;height:105px;border-radius:50%;object-fit:cover;
- border:3px solid var(--cyan);box-shadow:0 0 35px #00eaff55
+ width:105px;
+ height:105px;
+ border-radius:50%;
+ object-fit:cover;
+ border:3px solid var(--cyan);
+ box-shadow:0 0 35px #00eaff55
 }
+
 .hero h1{
- margin-top:15px;font-size:clamp(40px,9vw,78px);letter-spacing:4px;
+ margin-top:15px;
+ font-size:clamp(40px,9vw,78px);
+ letter-spacing:4px;
  background:linear-gradient(90deg,var(--cyan),var(--blue),var(--purple),var(--pink));
- -webkit-background-clip:text;color:transparent
+ -webkit-background-clip:text;
+ color:transparent
 }
-.hero p{color:var(--muted);margin-top:8px}
+
+.hero p{
+ color:var(--muted);
+ margin-top:8px
+}
+
 .badge{
- display:inline-block;margin-top:14px;padding:8px 14px;
- border:1px solid var(--border);border-radius:30px;
- color:var(--green);font-size:12px;background:#35ff9a08
+ display:inline-block;
+ margin-top:14px;
+ padding:8px 14px;
+ border:1px solid var(--border);
+ border-radius:30px;
+ color:var(--green);
+ font-size:12px;
+ background:#35ff9a08
 }
-.container{max-width:1250px;margin:auto;padding:18px}
+
+.container{
+ max-width:1250px;
+ margin:auto;
+ padding:18px
+}
+
 .search{
- position:sticky;top:68px;z-index:100;margin-bottom:18px
+ position:sticky;
+ top:68px;
+ z-index:100;
+ margin-bottom:18px
 }
+
 .search input{
- background:#080e20;border:1px solid var(--border);
- box-shadow:0 8px 30px #0008;font-size:16px
+ background:#080e20;
+ border:1px solid var(--border);
+ box-shadow:0 8px 30px #0008;
+ font-size:16px
 }
+
 .categories{
- display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px
+ display:flex;
+ gap:8px;
+ overflow-x:auto;
+ padding-bottom:8px;
+ margin-bottom:14px
 }
+
 .cat{
- white-space:nowrap;background:#0c142a;color:#ccd5ef;
- border:1px solid var(--border);border-radius:20px;padding:8px 13px
+ white-space:nowrap;
+ background:#0c142a;
+ color:#ccd5ef;
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:8px 13px
 }
-.cat.active{background:#087d9f;color:white;border-color:var(--cyan)}
+
+.cat.active{
+ background:#087d9f;
+ color:white;
+ border-color:var(--cyan)
+}
+
 .tools{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+ gap:12px
 }
+
 .tool{
  background:linear-gradient(145deg,var(--card),var(--card2));
- border:1px solid var(--border);border-radius:18px;
- padding:18px 12px;text-align:center;transition:.22s
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:18px 12px;
+ text-align:center;
+ transition:.22s
 }
-.tool:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 12px 35px #00eaff15}
-.tool .emoji{font-size:30px;margin-bottom:8px}
-.tool h3{font-size:14px}
-.tool p{font-size:10px;color:var(--muted);margin-top:5px}
-.tool.hide{display:none}
+
+.tool:hover{
+ transform:translateY(-4px);
+ border-color:var(--cyan);
+ box-shadow:0 12px 35px #00eaff15
+}
+
+.tool .emoji{
+ font-size:30px;
+ margin-bottom:8px
+}
+
+.tool h3{
+ font-size:14px
+}
+
+.tool p{
+ font-size:10px;
+ color:var(--muted);
+ margin-top:5px
+}
+
+.tool.hide{
+ display:none
+}
+
 .panel{
- display:none;margin-top:20px;padding:20px;
- border:1px solid var(--border);border-radius:22px;
+ display:none;
+ margin-top:20px;
+ padding:20px;
+ border:1px solid var(--border);
+ border-radius:22px;
  background:linear-gradient(145deg,var(--card),#070d1e);
  box-shadow:0 15px 45px #0004
 }
-.panel.active{display:block}
-.title{color:var(--cyan);font-size:23px;margin-bottom:16px}
+
+.panel.active{
+ display:block
+}
+
+.title{
+ color:var(--cyan);
+ font-size:23px;
+ margin-bottom:16px
+}
+
 .close{
- float:right;background:#17203a;color:white;border:1px solid var(--border);
- border-radius:9px;padding:6px 10px
+ float:right;
+ background:#17203a;
+ color:white;
+ border:1px solid var(--border);
+ border-radius:9px;
+ padding:6px 10px
 }
-.field{margin-bottom:12px}
-label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+
+.field{
+ margin-bottom:12px
+}
+
+label{
+ display:block;
+ color:var(--muted);
+ font-size:12px;
+ margin-bottom:6px
+}
+
 input,textarea,select{
- width:100%;background:#060c1d;color:white;
- border:1px solid var(--border);border-radius:11px;
- padding:11px 12px;outline:none
+ width:100%;
+ background:#060c1d;
+ color:white;
+ border:1px solid var(--border);
+ border-radius:11px;
+ padding:11px 12px;
+ outline:none
 }
-textarea{min-height:150px;resize:vertical}
-input:focus,textarea:focus,select:focus{border-color:var(--cyan)}
-.row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+textarea{
+ min-height:150px;
+ resize:vertical
+}
+
+input:focus,textarea:focus,select:focus{
+ border-color:var(--cyan)
+}
+
+.row{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px
+}
+
+.row3{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px
+}
+
+.buttons{
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px;
+ margin-top:10px
+}
+
 .btn{
- border:0;border-radius:11px;padding:10px 15px;
- color:white;font-weight:700;background:linear-gradient(135deg,#087eaa,#3859dc)
+ border:0;
+ border-radius:11px;
+ padding:10px 15px;
+ color:white;
+ font-weight:700;
+ background:linear-gradient(135deg,#087eaa,#3859dc)
 }
-.btn.green{background:linear-gradient(135deg,#087c55,#12a86f)}
-.btn.red{background:linear-gradient(135deg,#8b173b,#c52d55)}
-.btn.dark{background:#131d38;border:1px solid var(--border)}
+
+.btn.green{
+ background:linear-gradient(135deg,#087c55,#12a86f)
+}
+
+.btn.red{
+ background:linear-gradient(135deg,#8b173b,#c52d55)
+}
+
+.btn.dark{
+ background:#131d38;
+ border:1px solid var(--border)
+}
+
 .output{
- margin-top:14px;padding:14px;background:#050a18;
- border:1px solid var(--border);border-radius:14px
+ margin-top:14px;
+ padding:14px;
+ background:#050a18;
+ border:1px solid var(--border);
+ border-radius:14px
 }
-.result{margin-top:12px;color:var(--green);font-weight:bold;line-height:1.7}
+
+.result{
+ margin-top:12px;
+ color:var(--green);
+ font-weight:bold;
+ line-height:1.7
+}
+
 #qrcode{
- width:max-content;max-width:100%;margin:18px auto;
- padding:12px;background:white;border-radius:10px
+ width:max-content;
+ max-width:100%;
+ margin:18px auto;
+ padding:12px;
+ background:white;
+ border-radius:10px
 }
-#qrcode img{max-width:100%}
-.preview{max-width:100%;max-height:350px;display:block;margin:12px auto;border-radius:12px}
+
+#qrcode img{
+ max-width:100%
+}
+
+.preview{
+ max-width:100%;
+ max-height:350px;
+ display:block;
+ margin:12px auto;
+ border-radius:12px
+}
+
 .timer{
- text-align:center;font-size:54px;font-weight:900;color:var(--cyan);
- text-shadow:0 0 20px #00eaff44;margin:25px 0
+ text-align:center;
+ font-size:54px;
+ font-weight:900;
+ color:var(--cyan);
+ text-shadow:0 0 20px #00eaff44;
+ margin:25px 0
 }
-.big-number{font-size:34px;color:var(--cyan);font-weight:900}
-.check{width:auto!important}
+
+.big-number{
+ font-size:34px;
+ color:var(--cyan);
+ font-weight:900
+}
+
+.check{
+ width:auto!important
+}
+
 .todo-item{
- display:flex;align-items:center;gap:8px;padding:10px;
+ display:flex;
+ align-items:center;
+ gap:8px;
+ padding:10px;
  border-bottom:1px solid var(--border)
 }
-.todo-item.done span{text-decoration:line-through;color:#68718a}
-.color-box{height:80px;border-radius:14px;margin-top:10px;border:1px solid var(--border)}
-.note-info{color:var(--muted);font-size:12px;margin-top:7px}
-footer{text-align:center;color:var(--muted);padding:40px 15px;font-size:12px}
+
+.todo-item.done span{
+ text-decoration:line-through;
+ color:#68718a
+}
+
+.color-box{
+ height:80px;
+ border-radius:14px;
+ margin-top:10px;
+ border:1px solid var(--border)
+}
+
+.note-info{
+ color:var(--muted);
+ font-size:12px;
+ margin-top:7px
+}
+
+footer{
+ text-align:center;
+ color:var(--muted);
+ padding:40px 15px;
+ font-size:12px
+}
+
 @media(max-width:600px){
- .container{padding:12px}
- .tools{grid-template-columns:repeat(2,1fr)}
- .row,.row3{grid-template-columns:1fr}
- .panel{padding:15px}
- .timer{font-size:42px}
+
+ .container{
+  padding:12px
+ }
+
+ .tools{
+  grid-template-columns:repeat(2,1fr)
+ }
+
+ .row,.row3{
+  grid-template-columns:1fr
+ }
+
+ .panel{
+  padding:15px
+ }
+
+ .timer{
+  font-size:42px
+ }
+
+ .openingProfile{
+  width:125px;
+  height:125px
+ }
+
+ .openingRing{
+  width:180px;
+  height:180px
+ }
+
+ .openingRing2{
+  width:215px;
+  height:215px
+ }
+
+ .openingSub{
+  font-size:11px;
+  letter-spacing:3px
+ }
 }
 </style>
 </head>
 
 <body>
+
+<!-- =========================
+     QR KING PRO OPENING
+========================= -->
+
+<div id="openingScreen">
+
+ <div class="openingGlow"></div>
+ <div class="openingRing"></div>
+ <div class="openingRing2"></div>
+
+ <img
+  src="profile.jpg"
+  class="openingProfile"
+  alt="Himanshu">
+
+ <div class="openingTitle">
+  👑 QR KING PRO
+ </div>
+
+ <div class="openingSub">
+  ⚡ DIGITAL TECHNOLOGY HUB
+ </div>
+
+ <div class="openingCreator">
+  Created by HIMANSHU
+ </div>
+
+ <div class="openingLoader">
+  <span></span>
+  <span></span>
+  <span></span>
+ </div>
+
+ <div class="openingStatus">
+  SYSTEM ONLINE • INITIALIZING
+ </div>
+
+ <div class="openingLine"></div>
+
+</div>
+
 
 <header>
  <div class="nav">
@@ -290,8 +868,6 @@ footer{text-align:center;color:var(--muted);padding:40px 15px;font-size:12px}
 </div>
 
 
-<!-- QR -->
-
 <section class="panel" id="qrPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">📱 QR Generator</h2>
@@ -324,8 +900,6 @@ footer{text-align:center;color:var(--muted);padding:40px 15px;font-size:12px}
 </section>
 
 
-<!-- BARCODE -->
-
 <section class="panel" id="barcodePanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">🏷️ Barcode Generator</h2>
@@ -340,8 +914,6 @@ footer{text-align:center;color:var(--muted);padding:40px 15px;font-size:12px}
 <div id="barcodeBox" class="output" style="text-align:center;font-size:32px;letter-spacing:4px"></div>
 </section>
 
-
-<!-- RESIZE -->
 
 <section class="panel" id="resizePanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -399,8 +971,6 @@ oninput="qval.textContent=this.value+'%'">
 </section>
 
 
-<!-- IMAGE EDIT -->
-
 <section class="panel" id="imagePanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">✂️ Image Quick Editor</h2>
@@ -418,8 +988,6 @@ oninput="qval.textContent=this.value+'%'">
 </div>
 </section>
 
-
-<!-- CALCULATOR -->
 
 <section class="panel" id="calcPanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -451,8 +1019,6 @@ oninput="qval.textContent=this.value+'%'">
 </section>
 
 
-<!-- PERCENT -->
-
 <section class="panel" id="percentPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">📊 Percentage Calculator</h2>
@@ -464,8 +1030,6 @@ oninput="qval.textContent=this.value+'%'">
 <div id="presult" class="result"></div>
 </section>
 
-
-<!-- GST -->
 
 <section class="panel" id="gstPanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -479,8 +1043,6 @@ oninput="qval.textContent=this.value+'%'">
 </section>
 
 
-<!-- DISCOUNT -->
-
 <section class="panel" id="discountPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">🏷️ Discount Calculator</h2>
@@ -492,8 +1054,6 @@ oninput="qval.textContent=this.value+'%'">
 <div id="discountResult" class="result"></div>
 </section>
 
-
-<!-- EMI -->
 
 <section class="panel" id="emiPanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -508,8 +1068,6 @@ oninput="qval.textContent=this.value+'%'">
 </section>
 
 
-<!-- AGE -->
-
 <section class="panel" id="agePanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">🎂 Age Calculator</h2>
@@ -521,8 +1079,6 @@ oninput="qval.textContent=this.value+'%'">
 <div id="ageResult" class="result"></div>
 </section>
 
-
-<!-- UNIT -->
 
 <section class="panel" id="unitPanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -560,8 +1116,6 @@ oninput="qval.textContent=this.value+'%'">
 </section>
 
 
-<!-- TEXT -->
-
 <section class="panel" id="textPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">📝 Text Tools</h2>
@@ -584,8 +1138,6 @@ oninput="qval.textContent=this.value+'%'">
 </section>
 
 
-<!-- NOTES -->
-
 <section class="panel" id="notesPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">📒 Notes</h2>
@@ -597,8 +1149,6 @@ oninput="qval.textContent=this.value+'%'">
 </section>
 
 
-<!-- TODO -->
-
 <section class="panel" id="todoPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">✅ To-Do List</h2>
@@ -609,8 +1159,6 @@ oninput="qval.textContent=this.value+'%'">
 <div id="todoList" class="output"></div>
 </section>
 
-
-<!-- PASSWORD -->
 
 <section class="panel" id="passwordPanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -640,8 +1188,6 @@ oninput="passLengthText.textContent=this.value">
 </section>
 
 
-<!-- UUID -->
-
 <section class="panel" id="uuidPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">🆔 UUID Generator</h2>
@@ -652,8 +1198,6 @@ oninput="passLengthText.textContent=this.value">
 </div>
 </section>
 
-
-<!-- JSON -->
 
 <section class="panel" id="jsonPanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -668,8 +1212,6 @@ oninput="passLengthText.textContent=this.value">
 </section>
 
 
-<!-- BASE64 -->
-
 <section class="panel" id="base64Panel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">🔄 Base64 Tool</h2>
@@ -682,8 +1224,6 @@ oninput="passLengthText.textContent=this.value">
 </section>
 
 
-<!-- URL -->
-
 <section class="panel" id="urlPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">🔗 URL Encoder / Decoder</h2>
@@ -695,8 +1235,6 @@ oninput="passLengthText.textContent=this.value">
 <textarea id="urlOutput" placeholder="Result..."></textarea>
 </section>
 
-
-<!-- COLOR -->
 
 <section class="panel" id="colorPanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -723,8 +1261,6 @@ oninput="passLengthText.textContent=this.value">
 </section>
 
 
-<!-- GRADIENT -->
-
 <section class="panel" id="gradientPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">🌈 CSS Gradient Generator</h2>
@@ -749,8 +1285,6 @@ oninput="angleText.textContent=this.value;makeGradient()">
 </section>
 
 
-<!-- STOPWATCH -->
-
 <section class="panel" id="stopwatchPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">⏱️ Stopwatch</h2>
@@ -762,8 +1296,6 @@ oninput="angleText.textContent=this.value;makeGradient()">
 </div>
 </section>
 
-
-<!-- TIMER -->
 
 <section class="panel" id="timerPanel">
 <button class="close" onclick="closePanels()">✕</button>
@@ -784,8 +1316,6 @@ oninput="angleText.textContent=this.value;makeGradient()">
 </section>
 
 
-<!-- CLOCK -->
-
 <section class="panel" id="clockPanel">
 <button class="close" onclick="closePanels()">✕</button>
 <h2 class="title">🕐 Digital Clock</h2>
@@ -805,19 +1335,49 @@ oninput="angleText.textContent=this.value;makeGradient()">
 <script>
 
 /* =========================
+   OPENING SCREEN
+========================= */
+
+window.addEventListener("load",function(){
+
+ const opening=document.getElementById("openingScreen");
+
+ setTimeout(function(){
+
+  if(opening){
+
+   opening.style.pointerEvents="none";
+
+   setTimeout(function(){
+    opening.remove();
+   },1200);
+
+  }
+
+ },7000);
+
+});
+
+
+/* =========================
    TOOL SYSTEM
 ========================= */
 
 function openTool(id){
  closePanels();
  document.getElementById(id).classList.add("active");
+
  setTimeout(()=>{
-  document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"});
+  document.getElementById(id).scrollIntoView({
+   behavior:"smooth",
+   block:"start"
+  });
  },50);
 }
 
 function closePanels(){
- document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+ document.querySelectorAll(".panel")
+ .forEach(x=>x.classList.remove("active"));
 }
 
 
@@ -826,18 +1386,33 @@ function closePanels(){
 ========================= */
 
 document.getElementById("toolSearch").addEventListener("input",function(){
+
  const q=this.value.toLowerCase();
+
  document.querySelectorAll(".tool").forEach(t=>{
-  t.classList.toggle("hide",!t.dataset.name.includes(q));
+
+  t.classList.toggle(
+   "hide",
+   !t.dataset.name.includes(q)
+  );
+
  });
 });
 
 function filterTools(cat,btn){
- document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
+
+ document.querySelectorAll(".cat")
+ .forEach(x=>x.classList.remove("active"));
+
  btn.classList.add("active");
 
  document.querySelectorAll(".tool").forEach(t=>{
-  t.classList.toggle("hide",cat!=="all" && t.dataset.cat!==cat);
+
+  t.classList.toggle(
+   "hide",
+   cat!=="all" && t.dataset.cat!==cat
+  );
+
  });
 }
 
@@ -847,20 +1422,37 @@ function filterTools(cat,btn){
 ========================= */
 
 function qrFields(){
+
  const type=document.getElementById("qrType").value;
  let html="";
 
  if(type==="text")
-  html=`<div class="field"><label>Text</label><textarea id="qrData" placeholder="Enter text..."></textarea></div>`;
+  html=`
+  <div class="field">
+   <label>Text</label>
+   <textarea id="qrData" placeholder="Enter text..."></textarea>
+  </div>`;
 
  if(type==="url")
-  html=`<div class="field"><label>Website URL</label><input id="qrData" placeholder="https://example.com"></div>`;
+  html=`
+  <div class="field">
+   <label>Website URL</label>
+   <input id="qrData" placeholder="https://example.com">
+  </div>`;
 
  if(type==="phone")
-  html=`<div class="field"><label>Phone Number</label><input id="qrData" placeholder="+91XXXXXXXXXX"></div>`;
+  html=`
+  <div class="field">
+   <label>Phone Number</label>
+   <input id="qrData" placeholder="+91XXXXXXXXXX">
+  </div>`;
 
  if(type==="email")
-  html=`<div class="field"><label>Email</label><input id="qrData" placeholder="name@example.com"></div>`;
+  html=`
+  <div class="field">
+   <label>Email</label>
+   <input id="qrData" placeholder="name@example.com">
+  </div>`;
 
  if(type==="wifi")
   html=`
@@ -868,6 +1460,7 @@ function qrFields(){
    <input id="wifiName" placeholder="Wi-Fi Name">
    <input id="wifiPass" placeholder="Wi-Fi Password">
   </div>
+
   <div class="field">
    <select id="wifiSecurity">
     <option value="WPA">WPA/WPA2</option>
@@ -884,14 +1477,19 @@ qrFields();
 let qrValue="";
 
 function makeQR(){
+
  const type=document.getElementById("qrType").value;
 
  if(type==="wifi"){
+
   const n=document.getElementById("wifiName").value;
   const p=document.getElementById("wifiPass").value;
   const s=document.getElementById("wifiSecurity").value;
+
   qrValue=`WIFI:T:${s};S:${n};P:${p};;`;
+
  }else{
+
   const data=document.getElementById("qrData").value.trim();
 
   if(!data){
@@ -899,13 +1497,14 @@ function makeQR(){
    return;
   }
 
-  if(type==="url") qrValue=data;
-  if(type==="phone") qrValue="tel:"+data;
-  if(type==="email") qrValue="mailto:"+data;
-  if(type==="text") qrValue=data;
+  if(type==="url")qrValue=data;
+  if(type==="phone")qrValue="tel:"+data;
+  if(type==="email")qrValue="mailto:"+data;
+  if(type==="text")qrValue=data;
  }
 
  const box=document.getElementById("qrcode");
+
  box.innerHTML="";
 
  new QRCode(box,{
@@ -918,6 +1517,7 @@ function makeQR(){
 }
 
 function downloadQR(){
+
  const img=document.querySelector("#qrcode img");
 
  if(!img){
@@ -926,17 +1526,21 @@ function downloadQR(){
  }
 
  const a=document.createElement("a");
+
  a.href=img.src;
  a.download="QR-KING.png";
  a.click();
 }
 
 function copyQR(){
+
  if(!qrValue){
   alert("पहले QR Generate करो.");
   return;
  }
+
  navigator.clipboard.writeText(qrValue);
+
  alert("QR data copied! 📋");
 }
 
@@ -946,6 +1550,7 @@ function copyQR(){
 ========================= */
 
 function makeBarcode(){
+
  const text=document.getElementById("barcodeText").value.trim();
 
  if(!text){
@@ -956,7 +1561,9 @@ function makeBarcode(){
  let bars="";
 
  for(let i=0;i<text.length;i++){
+
   const n=text.charCodeAt(i)%6+2;
+
   bars+="▌"+"▌".repeat(n);
  }
 
@@ -964,6 +1571,7 @@ function makeBarcode(){
 }
 
 function downloadBarcode(){
+
  const text=document.getElementById("barcodeBox").textContent;
 
  if(!text){
@@ -972,17 +1580,21 @@ function downloadBarcode(){
  }
 
  const canvas=document.createElement("canvas");
+
  canvas.width=1000;
  canvas.height=250;
 
  const ctx=canvas.getContext("2d");
+
  ctx.fillStyle="white";
  ctx.fillRect(0,0,1000,250);
+
  ctx.fillStyle="black";
  ctx.font="bold 35px Arial";
  ctx.fillText(text.substring(0,80),30,120);
 
  const a=document.createElement("a");
+
  a.href=canvas.toDataURL("image/png");
  a.download="QR-KING-barcode.png";
  a.click();
@@ -996,16 +1608,19 @@ function downloadBarcode(){
 let resizeImg=new Image();
 let resizedData="";
 
-document.getElementById("resizeFile").addEventListener("change",function(){
+document.getElementById("resizeFile")
+.addEventListener("change",function(){
 
  const file=this.files[0];
+
  if(!file)return;
 
  const url=URL.createObjectURL(file);
 
  resizeImg.onload=function(){
 
-  document.getElementById("resizeControls").style.display="block";
+  document.getElementById("resizeControls")
+  .style.display="block";
 
   rw.value=this.width;
   rh.value=this.height;
@@ -1016,33 +1631,55 @@ document.getElementById("resizeFile").addEventListener("change",function(){
  resizeImg.src=url;
 });
 
-document.getElementById("rw").addEventListener("input",function(){
+document.getElementById("rw")
+.addEventListener("input",function(){
+
  if(!ratio.checked)return;
+
  const r=resizeImg.height/resizeImg.width;
+
  rh.value=Math.round(this.value*r);
 });
 
-document.getElementById("rh").addEventListener("input",function(){
+document.getElementById("rh")
+.addEventListener("input",function(){
+
  if(!ratio.checked)return;
+
  const r=resizeImg.width/resizeImg.height;
+
  rw.value=Math.round(this.value*r);
 });
 
 function resizeImage(){
 
  const canvas=document.createElement("canvas");
+
  canvas.width=parseInt(rw.value);
  canvas.height=parseInt(rh.value);
 
  const ctx=canvas.getContext("2d");
- ctx.drawImage(resizeImg,0,0,canvas.width,canvas.height);
 
- resizedData=canvas.toDataURL(format.value,parseInt(quality.value)/100);
+ ctx.drawImage(
+  resizeImg,
+  0,
+  0,
+  canvas.width,
+  canvas.height
+ );
+
+ resizedData=canvas.toDataURL(
+  format.value,
+  parseInt(quality.value)/100
+ );
 
  resizePreview.src=resizedData;
 
  document.getElementById("resizeResult").textContent=
- "✅ Image resized: "+canvas.width+" × "+canvas.height;
+ "✅ Image resized: "+
+ canvas.width+
+ " × "+
+ canvas.height;
 }
 
 function downloadResized(){
@@ -1052,9 +1689,12 @@ function downloadResized(){
   return;
  }
 
- const ext=format.value.split("/")[1].replace("jpeg","jpg");
+ const ext=format.value
+ .split("/")[1]
+ .replace("jpeg","jpg");
 
  const a=document.createElement("a");
+
  a.href=resizedData;
  a.download="QR-KING-resized."+ext;
  a.click();
@@ -1065,17 +1705,25 @@ function downloadResized(){
    IMAGE EDIT
 ========================= */
 
-const editCanvas=document.getElementById("editCanvas");
-const ectx=editCanvas.getContext("2d");
+const editCanvas=
+ document.getElementById("editCanvas");
+
+const ectx=
+ editCanvas.getContext("2d");
+
 let editImg=new Image();
 let rotation=0;
 let flipped=false;
 
-document.getElementById("editFile").addEventListener("change",function(){
+document.getElementById("editFile")
+.addEventListener("change",function(){
+
  const file=this.files[0];
+
  if(!file)return;
 
  editImg.onload=drawEdit;
+
  editImg.src=URL.createObjectURL(file);
 });
 
@@ -1085,37 +1733,64 @@ function drawEdit(){
  const h=editImg.height;
 
  if(rotation%180!==0){
+
   editCanvas.width=h;
   editCanvas.height=w;
+
  }else{
+
   editCanvas.width=w;
   editCanvas.height=h;
  }
 
  ectx.save();
- ectx.clearRect(0,0,editCanvas.width,editCanvas.height);
 
- ectx.translate(editCanvas.width/2,editCanvas.height/2);
+ ectx.clearRect(
+  0,
+  0,
+  editCanvas.width,
+  editCanvas.height
+ );
+
+ ectx.translate(
+  editCanvas.width/2,
+  editCanvas.height/2
+ );
+
  ectx.rotate(rotation*Math.PI/180);
- ectx.scale(flipped?-1:1,1);
 
- ectx.drawImage(editImg,-w/2,-h/2);
+ ectx.scale(
+  flipped?-1:1,
+  1
+ );
+
+ ectx.drawImage(
+  editImg,
+  -w/2,
+  -h/2
+ );
 
  ectx.restore();
 }
 
 function rotateImage(){
+
  rotation=(rotation+90)%360;
+
  drawEdit();
 }
 
 function flipImage(){
+
  flipped=!flipped;
+
  drawEdit();
 }
 
 function downloadEdited(){
+
  const a=document.createElement("a");
+
  a.href=editCanvas.toDataURL("image/png");
  a.download="QR-KING-edited.png";
  a.click();
@@ -1129,8 +1804,11 @@ function downloadEdited(){
 let calcValue="";
 
 function pressCalc(v){
+
  calcValue+=v;
- document.getElementById("calc").value=calcValue;
+
+ document.getElementById("calc").value=
+  calcValue;
 }
 
 function calculate(){
@@ -1140,19 +1818,30 @@ function calculate(){
   if(!/^[0-9+\-*/().% ]+$/.test(calcValue))
    throw new Error();
 
-  const result=Function('"use strict";return ('+calcValue+')')();
+  const result=
+   Function(
+    '"use strict";return ('+
+    calcValue+
+    ')'
+   )();
 
   calcValue=String(result);
-  document.getElementById("calc").value=calcValue;
+
+  document.getElementById("calc").value=
+   calcValue;
 
  }catch(e){
+
   document.getElementById("calc").value="Error";
+
   calcValue="";
  }
 }
 
 function clearCalc(){
+
  calcValue="";
+
  document.getElementById("calc").value="0";
 }
 
@@ -1168,7 +1857,8 @@ function percentage(){
 
  if(isNaN(n)||isNaN(p))return;
 
- presult.textContent=`${p}% of ${n} = ${(n*p/100).toFixed(2)}`;
+ presult.textContent=
+  `${p}% of ${n} = ${(n*p/100).toFixed(2)}`;
 }
 
 
@@ -1186,9 +1876,9 @@ function gstCalc(){
 
  gstResult.innerHTML=
  `GST Amount: ₹${gst.toFixed(2)}<br>
-  Total: ₹${total.toFixed(2)}<br>
-  CGST: ₹${(gst/2).toFixed(2)}<br>
-  SGST: ₹${(gst/2).toFixed(2)}`;
+ Total: ₹${total.toFixed(2)}<br>
+ CGST: ₹${(gst/2).toFixed(2)}<br>
+ SGST: ₹${(gst/2).toFixed(2)}`;
 }
 
 
@@ -1223,16 +1913,24 @@ function emiCalc(){
  const r=annual/12/100;
 
  if(!P||!n){
-  emiResult.textContent="Please enter loan and months.";
+
+  emiResult.textContent=
+   "Please enter loan and months.";
+
   return;
  }
 
  let emi;
 
  if(r===0){
+
   emi=P/n;
+
  }else{
-  emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+
+  emi=
+   P*r*Math.pow(1+r,n)/
+   (Math.pow(1+r,n)-1);
  }
 
  const total=emi*n;
@@ -1253,23 +1951,42 @@ function ageCalc(){
  const dobDate=new Date(dob.value);
 
  if(!dob.value){
+
   alert("Select date of birth.");
+
   return;
  }
 
  const now=new Date();
 
- let years=now.getFullYear()-dobDate.getFullYear();
- let months=now.getMonth()-dobDate.getMonth();
- let days=now.getDate()-dobDate.getDate();
+ let years=
+  now.getFullYear()-
+  dobDate.getFullYear();
+
+ let months=
+  now.getMonth()-
+  dobDate.getMonth();
+
+ let days=
+  now.getDate()-
+  dobDate.getDate();
 
  if(days<0){
+
   months--;
-  days+=new Date(now.getFullYear(),now.getMonth(),0).getDate();
+
+  days+=
+   new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    0
+   ).getDate();
  }
 
  if(months<0){
+
   years--;
+
   months+=12;
  }
 
@@ -1283,6 +2000,7 @@ function ageCalc(){
 ========================= */
 
 const units={
+
  length:{
   meter:1,
   kilometer:1000,
@@ -1293,6 +2011,7 @@ const units={
   yard:.9144,
   mile:1609.344
  },
+
  weight:{
   kilogram:1,
   gram:.001,
@@ -1300,6 +2019,7 @@ const units={
   pound:.45359237,
   ounce:.0283495
  },
+
  data:{
   byte:1,
   KB:1024,
@@ -1313,8 +2033,17 @@ function unitOptions(){
  const type=unitType.value;
 
  if(type==="temp"){
-  unitFrom.innerHTML=`<option>Celsius</option><option>Fahrenheit</option><option>Kelvin</option>`;
-  unitTo.innerHTML=`<option>Celsius</option><option>Fahrenheit</option><option>Kelvin</option>`;
+
+  unitFrom.innerHTML=
+   `<option>Celsius</option>
+    <option>Fahrenheit</option>
+    <option>Kelvin</option>`;
+
+  unitTo.innerHTML=
+   `<option>Celsius</option>
+    <option>Fahrenheit</option>
+    <option>Kelvin</option>`;
+
   return;
  }
 
@@ -1322,8 +2051,12 @@ function unitOptions(){
  unitTo.innerHTML="";
 
  Object.keys(units[type]).forEach(x=>{
-  unitFrom.innerHTML+=`<option>${x}</option>`;
-  unitTo.innerHTML+=`<option>${x}</option>`;
+
+  unitFrom.innerHTML+=
+   `<option>${x}</option>`;
+
+  unitTo.innerHTML+=
+   `<option>${x}</option>`;
  });
 }
 
@@ -1345,18 +2078,35 @@ function convertUnit(){
   let c;
 
   if(from==="Celsius")c=value;
-  if(from==="Fahrenheit")c=(value-32)*5/9;
-  if(from==="Kelvin")c=value-273.15;
 
-  if(to==="Celsius")result=c;
-  if(to==="Fahrenheit")result=c*9/5+32;
-  if(to==="Kelvin")result=c+273.15;
+  if(from==="Fahrenheit")
+   c=(value-32)*5/9;
+
+  if(from==="Kelvin")
+   c=value-273.15;
+
+  if(to==="Celsius")
+   result=c;
+
+  if(to==="Fahrenheit")
+   result=c*9/5+32;
+
+  if(to==="Kelvin")
+   result=c+273.15;
 
  }else{
-  result=value*units[type][from]/units[type][to];
+
+  result=
+   value*
+   units[type][from]/
+   units[type][to];
  }
 
- unitResult.textContent=`Result: ${result.toFixed(6).replace(/\.?0+$/,"")} ${to}`;
+ unitResult.textContent=
+ `Result: ${
+  result.toFixed(6)
+  .replace(/\.?0+$/,"")
+ } ${to}`;
 }
 
 
@@ -1364,42 +2114,67 @@ function convertUnit(){
    TEXT
 ========================= */
 
-const textBox=document.getElementById("textBox");
+const textBox=
+ document.getElementById("textBox");
 
-textBox.addEventListener("input",updateText);
+textBox.addEventListener(
+ "input",
+ updateText
+);
 
 function updateText(){
 
  const text=textBox.value;
 
- words.textContent=text.trim()?text.trim().split(/\s+/).length:0;
- chars.textContent=text.length;
- lines.textContent=text?text.split(/\n/).length:0;
+ words.textContent=
+  text.trim()
+  ?text.trim().split(/\s+/).length
+  :0;
+
+ chars.textContent=
+  text.length;
+
+ lines.textContent=
+  text
+  ?text.split(/\n/).length
+  :0;
 }
 
 function textCase(type){
 
  let t=textBox.value;
 
- if(type==="upper")t=t.toUpperCase();
+ if(type==="upper")
+  t=t.toUpperCase();
 
- if(type==="lower")t=t.toLowerCase();
+ if(type==="lower")
+  t=t.toLowerCase();
 
- if(type==="title"){
-  t=t.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
- }
+ if(type==="title")
+  t=t.toLowerCase()
+   .replace(
+    /\b\w/g,
+    c=>c.toUpperCase()
+   );
 
  textBox.value=t;
+
  updateText();
 }
 
 function copyText(){
- navigator.clipboard.writeText(textBox.value);
+
+ navigator.clipboard.writeText(
+  textBox.value
+ );
+
  alert("Text copied! 📋");
 }
 
 function clearText(){
+
  textBox.value="";
+
  updateText();
 }
 
@@ -1408,18 +2183,31 @@ function clearText(){
    NOTES
 ========================= */
 
-const notes=document.getElementById("notes");
+const notes=
+ document.getElementById("notes");
 
-notes.value=localStorage.getItem("qrking_notes")||"";
+notes.value=
+ localStorage.getItem("qrking_notes")||"";
 
-notes.addEventListener("input",()=>{
- localStorage.setItem("qrking_notes",notes.value);
-});
+notes.addEventListener(
+ "input",
+ ()=>{
+  localStorage.setItem(
+   "qrking_notes",
+   notes.value
+  );
+ }
+);
 
 function clearNotes(){
+
  if(confirm("Clear all notes?")){
+
   notes.value="";
-  localStorage.removeItem("qrking_notes");
+
+  localStorage.removeItem(
+   "qrking_notes"
+  );
  }
 }
 
@@ -1428,21 +2216,35 @@ function clearNotes(){
    TODO
 ========================= */
 
-let todos=JSON.parse(localStorage.getItem("qrking_todos")||"[]");
+let todos=
+ JSON.parse(
+  localStorage.getItem("qrking_todos")||"[]"
+ );
 
 function saveTodos(){
- localStorage.setItem("qrking_todos",JSON.stringify(todos));
+
+ localStorage.setItem(
+  "qrking_todos",
+  JSON.stringify(todos)
+ );
+
  renderTodos();
 }
 
 function addTodo(){
 
- const value=todoInput.value.trim();
+ const value=
+  todoInput.value.trim();
 
  if(!value)return;
 
- todos.push({text:value,done:false});
+ todos.push({
+  text:value,
+  done:false
+ });
+
  todoInput.value="";
+
  saveTodos();
 }
 
@@ -1452,34 +2254,60 @@ function renderTodos(){
 
  todos.forEach((t,i)=>{
 
-  const div=document.createElement("div");
-  div.className="todo-item"+(t.done?" done":"");
+  const div=
+   document.createElement("div");
+
+  div.className=
+   "todo-item"+
+   (t.done?" done":"");
 
   div.innerHTML=`
-  <input class="check" type="checkbox" ${t.done?"checked":""}
-  onchange="toggleTodo(${i})">
-  <span style="flex:1">${escapeHTML(t.text)}</span>
-  <button class="btn red" onclick="deleteTodo(${i})">🗑️</button>`;
+   <input
+    class="check"
+    type="checkbox"
+    ${t.done?"checked":""}
+    onchange="toggleTodo(${i})">
+
+   <span style="flex:1">
+    ${escapeHTML(t.text)}
+   </span>
+
+   <button
+    class="btn red"
+    onclick="deleteTodo(${i})">
+    🗑️
+   </button>`;
 
   todoList.appendChild(div);
  });
 }
 
 function toggleTodo(i){
+
  todos[i].done=!todos[i].done;
+
  saveTodos();
 }
 
 function deleteTodo(i){
+
  todos.splice(i,1);
+
  saveTodos();
 }
 
 function escapeHTML(s){
- return s.replace(/[&<>"']/g,m=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",
-  '"':"&quot;","'":"&#039;"
- }[m]));
+
+ return s.replace(
+  /[&<>"']/g,
+  m=>({
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#039;"
+  }[m])
+ );
 }
 
 renderTodos();
@@ -1491,8 +2319,11 @@ renderTodos();
 
 function secureRandom(max){
 
- const array=new Uint32Array(1);
+ const array=
+  new Uint32Array(1);
+
  crypto.getRandomValues(array);
+
  return array[0]%max;
 }
 
@@ -1500,20 +2331,37 @@ function generatePassword(){
 
  let chars="";
 
- if(lower.checked)chars+="abcdefghijklmnopqrstuvwxyz";
- if(upper.checked)chars+="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
- if(numbers.checked)chars+="0123456789";
- if(symbols.checked)chars+="!@#$%^&*()_+-=[]{}<>?";
+ if(lower.checked)
+  chars+="abcdefghijklmnopqrstuvwxyz";
+
+ if(upper.checked)
+  chars+="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+ if(numbers.checked)
+  chars+="0123456789";
+
+ if(symbols.checked)
+  chars+="!@#$%^&*()_+-=[]{}<>?";
 
  if(!chars){
+
   alert("Select at least one option.");
+
   return;
  }
 
  let result="";
 
- for(let i=0;i<Number(passLength.value);i++){
-  result+=chars[secureRandom(chars.length)];
+ for(
+  let i=0;
+  i<Number(passLength.value);
+  i++
+ ){
+
+  result+=
+   chars[
+    secureRandom(chars.length)
+   ];
  }
 
  passwordOutput.value=result;
@@ -1521,11 +2369,13 @@ function generatePassword(){
 
 function copyPassword(){
 
- if(!passwordOutput.value){
+ if(!passwordOutput.value)
   generatePassword();
- }
 
- navigator.clipboard.writeText(passwordOutput.value);
+ navigator.clipboard.writeText(
+  passwordOutput.value
+ );
+
  alert("Password copied! 🔐");
 }
 
@@ -1539,13 +2389,25 @@ function generateUUID(){
  let uuid;
 
  if(crypto.randomUUID){
+
   uuid=crypto.randomUUID();
+
  }else{
-  uuid="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{
-   const r=Math.random()*16|0;
-   const v=c==="x"?r:(r&3|8);
-   return v.toString(16);
-  });
+
+  uuid=
+   "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+   .replace(/[xy]/g,c=>{
+
+    const r=
+     Math.random()*16|0;
+
+    const v=
+     c==="x"
+     ?r
+     :(r&3|8);
+
+    return v.toString(16);
+   });
  }
 
  uuidOutput.value=uuid;
@@ -1561,22 +2423,40 @@ generateUUID();
 function formatJSON(){
 
  try{
-  const obj=JSON.parse(jsonInput.value);
-  jsonOutput.value=JSON.stringify(obj,null,2);
-  jsonStatus.textContent="✅ Valid JSON";
+
+  const obj=
+   JSON.parse(jsonInput.value);
+
+  jsonOutput.value=
+   JSON.stringify(obj,null,2);
+
+  jsonStatus.textContent=
+   "✅ Valid JSON";
+
  }catch(e){
-  jsonStatus.textContent="❌ Invalid JSON";
+
+  jsonStatus.textContent=
+   "❌ Invalid JSON";
  }
 }
 
 function minifyJSON(){
 
  try{
-  const obj=JSON.parse(jsonInput.value);
-  jsonOutput.value=JSON.stringify(obj);
-  jsonStatus.textContent="✅ JSON Minified";
+
+  const obj=
+   JSON.parse(jsonInput.value);
+
+  jsonOutput.value=
+   JSON.stringify(obj);
+
+  jsonStatus.textContent=
+   "✅ JSON Minified";
+
  }catch(e){
-  jsonStatus.textContent="❌ Invalid JSON";
+
+  jsonStatus.textContent=
+   "❌ Invalid JSON";
  }
 }
 
@@ -1588,18 +2468,40 @@ function minifyJSON(){
 function baseEncode(){
 
  try{
-  baseOutput.value=btoa(unescape(encodeURIComponent(baseInput.value)));
+
+  baseOutput.value=
+   btoa(
+    unescape(
+     encodeURIComponent(
+      baseInput.value
+     )
+    )
+   );
+
  }catch(e){
-  baseOutput.value="Encoding error";
+
+  baseOutput.value=
+   "Encoding error";
  }
 }
 
 function baseDecode(){
 
  try{
-  baseOutput.value=decodeURIComponent(escape(atob(baseInput.value)));
+
+  baseOutput.value=
+   decodeURIComponent(
+    escape(
+     atob(
+      baseInput.value
+     )
+    )
+   );
+
  }catch(e){
-  baseOutput.value="Invalid Base64";
+
+  baseOutput.value=
+   "Invalid Base64";
  }
 }
 
@@ -1609,15 +2511,26 @@ function baseDecode(){
 ========================= */
 
 function urlEncode(){
- urlOutput.value=encodeURIComponent(urlInput.value);
+
+ urlOutput.value=
+  encodeURIComponent(
+   urlInput.value
+  );
 }
 
 function urlDecode(){
 
  try{
-  urlOutput.value=decodeURIComponent(urlInput.value);
+
+  urlOutput.value=
+   decodeURIComponent(
+    urlInput.value
+   );
+
  }catch(e){
-  urlOutput.value="Invalid encoded text";
+
+  urlOutput.value=
+   "Invalid encoded text";
  }
 }
 
@@ -1631,11 +2544,18 @@ function hexToRGB(hex){
  hex=hex.replace("#","");
 
  if(hex.length===3)
-  hex=hex.split("").map(x=>x+x).join("");
+  hex=hex
+   .split("")
+   .map(x=>x+x)
+   .join("");
 
  const n=parseInt(hex,16);
 
- return `rgb(${n>>16 & 255}, ${n>>8 & 255}, ${n & 255})`;
+ return `rgb(
+  ${n>>16 & 255},
+  ${n>>8 & 255},
+  ${n & 255}
+ )`;
 }
 
 function updateColor(){
@@ -1643,11 +2563,18 @@ function updateColor(){
  const color=colorPicker.value;
 
  hexColor.value=color;
+
  colorBox.style.background=color;
- rgbResult.textContent=hexToRGB(color);
+
+ rgbResult.textContent=
+  hexToRGB(color);
 }
 
-colorPicker.addEventListener("input",updateColor);
+colorPicker.addEventListener(
+ "input",
+ updateColor
+);
+
 updateColor();
 
 
@@ -1658,14 +2585,28 @@ updateColor();
 function makeGradient(){
 
  const angle=gradAngle.value;
- const css=`linear-gradient(${angle}deg, ${grad1.value}, ${grad2.value})`;
+
+ const css=
+  `linear-gradient(
+   ${angle}deg,
+   ${grad1.value},
+   ${grad2.value}
+  )`;
 
  gradientBox.style.background=css;
+
  gradientCSS.value=css;
 }
 
-grad1.addEventListener("input",makeGradient);
-grad2.addEventListener("input",makeGradient);
+grad1.addEventListener(
+ "input",
+ makeGradient
+);
+
+grad2.addEventListener(
+ "input",
+ makeGradient
+);
 
 makeGradient();
 
@@ -1676,9 +2617,12 @@ makeGradient();
 
 function copyValue(id){
 
- const el=document.getElementById(id);
+ const el=
+  document.getElementById(id);
 
- navigator.clipboard.writeText(el.value);
+ navigator.clipboard.writeText(
+  el.value
+ );
 
  alert("Copied! 📋");
 }
@@ -1693,31 +2637,51 @@ let swInterval=null;
 
 function updateStopwatch(){
 
- const h=String(Math.floor(swSeconds/3600)).padStart(2,"0");
- const m=String(Math.floor(swSeconds%3600/60)).padStart(2,"0");
- const s=String(swSeconds%60).padStart(2,"0");
+ const h=
+  String(
+   Math.floor(swSeconds/3600)
+  ).padStart(2,"0");
 
- stopwatch.textContent=`${h}:${m}:${s}`;
+ const m=
+  String(
+   Math.floor(swSeconds%3600/60)
+  ).padStart(2,"0");
+
+ const s=
+  String(swSeconds%60)
+  .padStart(2,"0");
+
+ stopwatch.textContent=
+  `${h}:${m}:${s}`;
 }
 
 function startStopwatch(){
 
  if(swInterval)return;
 
- swInterval=setInterval(()=>{
-  swSeconds++;
-  updateStopwatch();
- },1000);
+ swInterval=
+  setInterval(()=>{
+
+   swSeconds++;
+
+   updateStopwatch();
+
+  },1000);
 }
 
 function pauseStopwatch(){
+
  clearInterval(swInterval);
+
  swInterval=null;
 }
 
 function resetStopwatch(){
+
  pauseStopwatch();
+
  swSeconds=0;
+
  updateStopwatch();
 }
 
@@ -1731,10 +2695,17 @@ let timerInterval=null;
 
 function showTimer(){
 
- const m=String(Math.floor(timerSeconds/60)).padStart(2,"0");
- const s=String(timerSeconds%60).padStart(2,"0");
+ const m=
+  String(
+   Math.floor(timerSeconds/60)
+  ).padStart(2,"0");
 
- countdown.textContent=`${m}:${s}`;
+ const s=
+  String(timerSeconds%60)
+  .padStart(2,"0");
+
+ countdown.textContent=
+  `${m}:${s}`;
 }
 
 function startTimer(){
@@ -1742,30 +2713,37 @@ function startTimer(){
  if(timerInterval)return;
 
  if(timerSeconds<=0){
+
   timerSeconds=
    Number(timerMin.value)*60+
    Number(timerSec.value);
  }
 
- timerInterval=setInterval(()=>{
+ timerInterval=
+  setInterval(()=>{
 
-  if(timerSeconds<=0){
+   if(timerSeconds<=0){
 
-   clearInterval(timerInterval);
-   timerInterval=null;
+    clearInterval(timerInterval);
 
-   alert("⏰ Time's up!");
-   return;
-  }
+    timerInterval=null;
 
-  timerSeconds--;
-  showTimer();
+    alert("⏰ Time's up!");
 
- },1000);
+    return;
+   }
+
+   timerSeconds--;
+
+   showTimer();
+
+  },1000);
 }
 
 function pauseTimer(){
+
  clearInterval(timerInterval);
+
  timerInterval=null;
 }
 
@@ -1792,14 +2770,21 @@ function updateClock(){
  const now=new Date();
 
  clock.textContent=
- now.toLocaleTimeString([],{
-  hour:"2-digit",
-  minute:"2-digit",
-  second:"2-digit"
- });
+  now.toLocaleTimeString(
+   [],
+   {
+    hour:"2-digit",
+    minute:"2-digit",
+    second:"2-digit"
+   }
+  );
 }
 
-setInterval(updateClock,1000);
+setInterval(
+ updateClock,
+ 1000
+);
+
 updateClock();
 
 </script>
