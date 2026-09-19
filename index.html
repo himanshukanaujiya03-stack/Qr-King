@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="QR KING - Free QR Code Generator. Create QR codes for links, text, phone, email, Wi-Fi, contacts and locations.">
+
+  <meta name="theme-color" content="#050816">
+
+  <title>QR KING — Free QR Code Generator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, #172554 0%, #050816 45%, #02030a 100%);
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 22px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      background: rgba(0,0,0,.25);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 30px;
+      letter-spacing: 3px;
+    }
+
+    header h1 span {
+      color: #38bdf8;
+    }
+
+    header p {
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    .container {
+      width: min(1000px, 92%);
+      margin: 35px auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .crown {
+      font-size: 55px;
+      margin-bottom: 8px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .hero h2 {
+      font-size: clamp(34px, 8vw, 60px);
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .hero h2 span {
+      color: #38bdf8;
+    }
+
+    .hero p {
+      color: #a1a1aa;
+      line-height: 1.7;
+    }
+
+    .tagline {
+      margin-top: 12px;
+      color: #38bdf8 !important;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .type-btn {
+      padding: 15px 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      color: white;
+      cursor: pointer;
+      transition: .25s;
+      font-size: 14px;
+    }
+
+    .type-btn:hover,
+    .type-btn.active {
+      background: rgba(56,189,248,.18);
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(56,189,248,.15);
+    }
+
+    .card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 22px;
+      padding: 25px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #d4d4d8;
+      font-size: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.35);
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    select option {
+      background: #111827;
+      color: white;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 12px rgba(56,189,248,.12);
+    }
+
+    .main-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #06b6d4, #2563eb);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: .25s;
+    }
+
+    .main-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(37,99,235,.3);
+    }
+
+    .qr-area {
+      margin-top: 25px;
+      text-align: center;
+      display: none;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .qr-area h3 {
+      margin-bottom: 10px;
+    }
+
+    #qrcode {
+      display: inline-block;
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      margin: 15px 0;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: #22c55e;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 5px;
+    }
+
+    .copy-btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      background: #7c3aed;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 15px;
+      color: #71717a;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: #38bdf8;
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        margin-top: 25px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      .crown {
+        font-size: 45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>👑 <span>QR KING</span></h1>
+  <p>Free • Fast • Simple QR Generator</p>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+
+    <div class="crown">👑</div>
+
+    <h2>QR <span>KING</span></h2>
+
+    <p>
+      हर तरह की जानकारी के लिए अपना QR Code बनाएं।
+    </p>
+
+    <p class="tagline">
+      CREATE • SCAN • SHARE
+    </p>
+
+  </section>
+
+  <!-- QR TYPES -->
+
+  <div class="grid">
+
+    <button class="type-btn active"
+            onclick="selectType('link', this)">
+      🔗 Link
+    </button>
+
+    <button class="type-btn"
+            onclick="selectType('text', this)">
+      📝 Text
+    </button>
+
+    <button class="type-btn"
+            onclick="selectType('phone', this)">
+      📞 Phone
+    </button>
+
+    <button class="type-btn"
+            onclick="selectType('email', this)">
+      ✉️ Email
+    </button>
+
+    <button class="type-btn"
+            onclick="selectType('wifi', this)">
+      📶 Wi-Fi
+    </button>
+
+    <button class="type-btn"
+            onclick="selectType('contact', this)">
+      👤 Contact
+    </button>
+
+    <button class="type-btn"
+            onclick="selectType('location', this)">
+      📍 Location
+    </button>
+
+  </div>
+
+
+  <section class="card">
+
+    <!-- LINK -->
+
+    <div id="linkBox">
+
+      <label>Website / Link</label>
+
+      <input
+        id="linkInput"
+        type="url"
+        placeholder="https://example.com">
+
+    </div>
+
+
+    <!-- TEXT -->
+
+    <div id="textBox" class="hidden">
+
+      <label>अपना Text लिखें</label>
+
+      <textarea
+        id="textInput"
+        placeholder="यहाँ अपना text लिखें..."></textarea>
+
+    </div>
+
+
+    <!-- PHONE -->
+
+    <div id="phoneBox" class="hidden">
+
+      <label>Phone Number</label>
+
+      <input
+        id="phoneInput"
+        type="tel"
+        placeholder="+91 9876543210">
+
+    </div>
+
+
+    <!-- EMAIL -->
+
+    <div id="emailBox" class="hidden">
+
+      <label>Email Address</label>
+
+      <input
+        id="emailInput"
+        type="email"
+        placeholder="example@gmail.com">
+
+      <label>Email Subject</label>
+
+      <input
+        id="emailSubject"
+        placeholder="Subject">
+
+      <label>Email Message</label>
+
+      <textarea
+        id="emailMessage"
+        placeholder="Message"></textarea>
+
+    </div>
+
+
+    <!-- WIFI -->
+
+    <div id="wifiBox" class="hidden">
+
+      <label>Wi-Fi Name</label>
+
+      <input
+        id="wifiName"
+        placeholder="My WiFi">
+
+      <label>Wi-Fi Password</label>
+
+      <input
+        id="wifiPassword"
+        type="password"
+        placeholder="Password">
+
+      <label>Security</label>
+
+      <select id="wifiSecurity">
+
+        <option value="WPA">
+          WPA / WPA2
+        </option>
+
+        <option value="WEP">
+          WEP
+        </option>
+
+        <option value="nopass">
+          No Password
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- CONTACT -->
+
+    <div id="contactBox" class="hidden">
+
+      <label>Name</label>
+
+      <input
+        id="contactName"
+        placeholder="Your Name">
+
+      <label>Phone</label>
+
+      <input
+        id="contactPhone"
+        placeholder="+91 9876543210">
+
+      <label>Email</label>
+
+      <input
+        id="contactEmail"
+        placeholder="example@gmail.com">
+
+    </div>
+
+
+    <!-- LOCATION -->
+
+    <div id="locationBox" class="hidden">
+
+      <label>Latitude</label>
+
+      <input
+        id="latitude"
+        placeholder="25.3176">
+
+      <label>Longitude</label>
+
+      <input
+        id="longitude"
+        placeholder="82.9739">
+
+    </div>
+
+
+    <!-- GENERATE -->
+
+    <button
+      class="main-btn"
+      onclick="generateQR()">
+
+      👑 GENERATE QR
+
+    </button>
+
+
+    <!-- RESULT -->
+
+    <div
+      class="qr-area"
+      id="qrArea">
+
+      <h3>
+        आपका QR Code तैयार है 🎉
+      </h3>
+
+      <div id="qrcode"></div>
+
+      <br>
+
+      <a
+        id="downloadBtn"
+        class="download-btn"
+        href="#"
+        download="qr-king.png">
+
+        ⬇️ Download QR
+
+      </a>
+
+      <button
+        class="copy-btn"
+        onclick="copyQRData()">
+
+        📋 Copy Data
+
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  © 2026 <strong>QR KING</strong>
+  • Create • Scan • Share
+
+</footer>
+
+
+<!-- QR LIBRARY -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<script>
+
+  let currentType = "link";
+
+  let currentQRData = "";
+
+
+  const boxes = [
+
+    "linkBox",
+    "textBox",
+    "phoneBox",
+    "emailBox",
+    "wifiBox",
+    "contactBox",
+    "locationBox"
+
+  ];
+
+
+  function selectType(type, button) {
+
+    currentType = type;
+
+    boxes.forEach(id => {
+
+      document
+        .getElementById(id)
+        .classList
+        .add("hidden");
+
+    });
+
+
+    document
+      .getElementById(type + "Box")
+      .classList
+      .remove("hidden");
+
+
+    document
+      .querySelectorAll(".type-btn")
+      .forEach(btn => {
+
+        btn.classList.remove("active");
+
+      });
+
+
+    button.classList.add("active");
+
+
+    document
+      .getElementById("qrArea")
+      .style.display = "none";
+
+  }
+
+
+  function generateQR() {
+
+    let data = "";
+
+
+    /* LINK */
+
+    if (currentType === "link") {
+
+      data =
+        document
+          .getElementById("linkInput")
+          .value
+          .trim();
+
+
+      if (!data) {
+
+        alert("कृपया Website Link डालें।");
+
+        return;
+
+      }
+
+    }
+
+
+    /* TEXT */
+
+    if (currentType === "text") {
+
+      data =
+        document
+          .getElementById("textInput")
+          .value
+          .trim();
+
+
+      if (!data) {
+
+        alert("कृपया Text लिखें।");
+
+        return;
+
+      }
+
+    }
+
+
+    /* PHONE */
+
+    if (currentType === "phone") {
+
+      const phone =
+        document
+          .getElementById("phoneInput")
+          .value
+          .trim();
+
+
+      if (!phone) {
+
+        alert("कृपया Phone Number डालें।");
+
+        return;
+
+      }
+
+
+      data = "tel:" + phone;
+
+    }
+
+
+    /* EMAIL */
+
+    if (currentType === "email") {
+
+      const email =
+        document
+          .getElementById("emailInput")
+          .value
+          .trim();
+
+      const subject =
+        document
+          .getElementById("emailSubject")
+          .value
+          .trim();
+
+      const message =
+        document
+          .getElementById("emailMessage")
+          .value
+          .trim();
+
+
+      if (!email) {
+
+        alert("कृपया Email Address डालें।");
+
+        return;
+
+      }
+
+
+      data =
+        "mailto:" +
+        email +
+        "?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(message);
+
+    }
+
+
+    /* WIFI */
+
+    if (currentType === "wifi") {
+
+      const name =
+        document
+          .getElementById("wifiName")
+          .value;
+
+      const password =
+        document
+          .getElementById("wifiPassword")
+          .value;
+
+      const security =
+        document
+          .getElementById("wifiSecurity")
+          .value;
+
+
+      if (!name) {
+
+        alert("कृपया Wi-Fi Name डालें।");
+
+        return;
+
+      }
+
+
+      data =
+        "WIFI:T:" +
+        security +
+        ";S:" +
+        escapeQR(name) +
+        ";P:" +
+        escapeQR(password) +
+        ";;";
+
+    }
+
+
+    /* CONTACT */
+
+    if (currentType === "contact") {
+
+      const name =
+        document
+          .getElementById("contactName")
+          .value;
+
+      const phone =
+        document
+          .getElementById("contactPhone")
+          .value;
+
+      const email =
+        document
+          .getElementById("contactEmail")
+          .value;
+
+
+      if (!name && !phone && !email) {
+
+        alert("Contact details डालें।");
+
+        return;
+
+      }
+
+
+      data =
+        "BEGIN:VCARD\n" +
+        "VERSION:3.0\n" +
+        "FN:" + name + "\n" +
+        "TEL:" + phone + "\n" +
+        "EMAIL:" + email + "\n" +
+        "END:VCARD";
+
+    }
+
+
+    /* LOCATION */
+
+    if (currentType === "location") {
+
+      const lat =
+        document
+          .getElementById("latitude")
+          .value
+          .trim();
+
+      const lon =
+        document
+          .getElementById("longitude")
+          .value
+          .trim();
+
+
+      if (!lat || !lon) {
+
+        alert(
+          "Latitude और Longitude डालें।"
+        );
+
+        return;
+
+      }
+
+
+      data =
+        "https://www.google.com/maps?q=" +
+        encodeURIComponent(
+          lat + "," + lon
+        );
+
+    }
+
+
+    currentQRData = data;
+
+
+    const qrContainer =
+      document.getElementById("qrcode");
+
+
+    qrContainer.innerHTML = "";
+
+
+    new QRCode(qrContainer, {
+
+      text: data,
+
+      width: 220,
+
+      height: 220,
+
+      correctLevel:
+        QRCode.CorrectLevel.H
+
+    });
+
+
+    document
+      .getElementById("qrArea")
+      .style.display = "block";
+
+
+    setTimeout(() => {
+
+      const canvas =
+        qrContainer
+          .querySelector("canvas");
+
+
+      if (canvas) {
+
+        document
+          .getElementById("downloadBtn")
+          .href =
+          canvas.toDataURL("image/png");
+
+      }
+
+    }, 200);
+
+  }
+
+
+  function escapeQR(value) {
+
+    return value
+
+      .replace(/\\/g, "\\\\")
+
+      .replace(/;/g, "\\;")
+
+      .replace(/,/g, "\\,")
+
+      .replace(/:/g, "\\:");
+
+  }
+
+
+  async function copyQRData() {
+
+    if (!currentQRData) return;
+
+
+    try {
+
+      await navigator
+        .clipboard
+        .writeText(currentQRData);
+
+
+      alert(
+        "QR का Data Copy हो गया ✅"
+      );
+
+    }
+
+    catch {
+
+      alert(
+        "Copy नहीं हो पाया।"
+      );
+
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
