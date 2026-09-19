@@ -1,296 +1,257 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description"
-    content="QR KING - Free QR Code Generator for links, text, phone, email, Wi-Fi, contacts and locations.">
+<title>QR KING | QR Code Generator</title>
 
-  <meta name="theme-color" content="#050816">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-  <title>QR KING — Free QR Code Generator</title>
+body{
+  font-family:Arial, sans-serif;
+  background:
+    radial-gradient(circle at top,#172554,#020617 55%);
+  color:white;
+  min-height:100vh;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+header{
+  text-align:center;
+  padding:25px 15px 10px;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background:
-        radial-gradient(circle at top, #172554 0%, #050816 45%, #02030a 100%);
-      color: white;
-      min-height: 100vh;
-    }
+.logo{
+  font-size:32px;
+  font-weight:bold;
+  color:#38bdf8;
+  text-shadow:0 0 20px rgba(56,189,248,.7);
+}
 
-    header {
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-      background: rgba(0,0,0,.3);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+.subtitle{
+  color:#94a3b8;
+  margin-top:6px;
+  font-size:14px;
+}
 
-    header h1 {
-      font-size: 30px;
-      letter-spacing: 3px;
-    }
+/* PROFILE */
 
-    header h1 span {
-      color: #38bdf8;
-    }
+.profile{
+  text-align:center;
+  padding:30px 15px 15px;
+}
 
-    header p {
-      color: #9ca3af;
-      margin-top: 6px;
-    }
+.profile-img{
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #38bdf8;
+  box-shadow:
+    0 0 20px rgba(56,189,248,.5),
+    0 0 50px rgba(37,99,235,.2);
+  background:#111827;
+}
 
-    /* PROFILE */
+.profile h2{
+  margin-top:12px;
+  font-size:22px;
+}
 
-    .profile {
-      text-align: center;
-      padding: 35px 15px 15px;
-    }
+.profile p{
+  color:#94a3b8;
+  margin-top:5px;
+  font-size:14px;
+}
 
-    .profile-img {
-      width: 105px;
-      height: 105px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #38bdf8;
-      box-shadow:
-        0 0 20px rgba(56,189,248,.5),
-        0 0 50px rgba(37,99,235,.2);
-      background: #111827;
-    }
+/* MAIN */
 
-    .profile h2 {
-      margin-top: 12px;
-      font-size: 23px;
-    }
+.container{
+  width:95%;
+  max-width:650px;
+  margin:20px auto;
+}
 
-    .profile p {
-      margin-top: 5px;
-      color: #9ca3af;
-      font-size: 14px;
-    }
+.card{
+  background:rgba(15,23,42,.82);
+  border:1px solid rgba(56,189,248,.2);
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 0 30px rgba(0,0,0,.35);
+  backdrop-filter:blur(10px);
+}
 
-    .container {
-      width: min(1000px, 92%);
-      margin: 25px auto;
-    }
+h1{
+  text-align:center;
+  margin-bottom:18px;
+  font-size:25px;
+}
 
-    .hero {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+/* BUTTONS */
 
-    .crown {
-      font-size: 55px;
-      margin-bottom: 8px;
-      animation: float 2s ease-in-out infinite;
-    }
+.modes{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:18px;
+}
 
-    @keyframes float {
-      0%,100% {
-        transform: translateY(0);
-      }
+.mode{
+  border:none;
+  padding:12px;
+  border-radius:12px;
+  background:#0f172a;
+  color:#cbd5e1;
+  border:1px solid #334155;
+  cursor:pointer;
+  font-size:14px;
+}
 
-      50% {
-        transform: translateY(-8px);
-      }
-    }
+.mode.active{
+  background:#0284c7;
+  color:white;
+  border-color:#38bdf8;
+  box-shadow:0 0 15px rgba(56,189,248,.35);
+}
 
-    .hero h2 {
-      font-size: clamp(34px, 8vw, 60px);
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-    }
+label{
+  display:block;
+  margin-bottom:7px;
+  color:#cbd5e1;
+  font-size:14px;
+}
 
-    .hero h2 span {
-      color: #38bdf8;
-    }
+textarea,
+input{
+  width:100%;
+  padding:13px;
+  border-radius:12px;
+  border:1px solid #334155;
+  background:#020617;
+  color:white;
+  outline:none;
+  margin-bottom:15px;
+}
 
-    .hero p {
-      color: #a1a1aa;
-      line-height: 1.7;
-    }
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
 
-    .tagline {
-      margin-top: 12px;
-      color: #38bdf8 !important;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
+textarea:focus,
+input:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 10px rgba(56,189,248,.2);
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 12px;
-      margin-bottom: 25px;
-    }
+.generate{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(90deg,#0284c7,#2563eb);
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(37,99,235,.3);
+}
 
-    .type-btn {
-      padding: 15px 10px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 14px;
-      background: rgba(255,255,255,.06);
-      color: white;
-      cursor: pointer;
-      transition: .25s;
-      font-size: 14px;
-    }
+.generate:hover{
+  transform:translateY(-1px);
+}
 
-    .type-btn:hover,
-    .type-btn.active {
-      background: rgba(56,189,248,.18);
-      border-color: #38bdf8;
-      transform: translateY(-2px);
-    }
+/* QR */
 
-    .card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 22px;
-      padding: 25px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.25);
-    }
+.qr-box{
+  text-align:center;
+  margin-top:25px;
+  padding:20px;
+  border-radius:18px;
+  background:#020617;
+  border:1px solid #1e3a5f;
+}
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      color: #d4d4d8;
-      font-size: 14px;
-    }
+#qrcode{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:20px;
+}
 
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 15px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.35);
-      color: white;
-      outline: none;
-      font-size: 15px;
-    }
+#qrcode img{
+  margin:auto;
+  padding:10px;
+  background:white;
+  border-radius:10px;
+}
 
-    select option {
-      background: #111827;
-      color: white;
-    }
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
 
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
+.action{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:#1e293b;
+  color:white;
+  border:1px solid #334155;
+}
 
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: #38bdf8;
-    }
+.action:hover{
+  border-color:#38bdf8;
+}
 
-    .main-btn {
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 13px;
-      background: linear-gradient(135deg, #06b6d4, #2563eb);
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 5px;
-    }
+.hidden{
+  display:none;
+}
 
-    .qr-area {
-      margin-top: 25px;
-      text-align: center;
-      display: none;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,.1);
-    }
+/* FOOTER */
 
-    #qrcode {
-      display: inline-block;
-      background: white;
-      padding: 15px;
-      border-radius: 15px;
-      margin: 15px 0;
-    }
+footer{
+  text-align:center;
+  padding:30px 15px;
+  color:#64748b;
+  font-size:13px;
+}
 
-    .download-btn {
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 12px;
-      background: #22c55e;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 5px;
-    }
+@media(max-width:500px){
+  .logo{
+    font-size:28px;
+  }
 
-    .copy-btn {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 12px;
-      background: #7c3aed;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 5px;
-    }
+  .modes{
+    grid-template-columns:1fr 1fr;
+  }
 
-    .hidden {
-      display: none;
-    }
-
-    footer {
-      text-align: center;
-      padding: 35px 15px;
-      color: #71717a;
-      font-size: 13px;
-    }
-
-    footer strong {
-      color: #38bdf8;
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        padding: 18px;
-      }
-
-      header h1 {
-        font-size: 24px;
-      }
-    }
-  </style>
+  .actions{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>👑 <span>QR KING</span></h1>
-  <p>Free • Fast • Simple QR Generator</p>
+  <div class="logo">👑 QR KING</div>
+  <div class="subtitle">Fast • Simple • Powerful QR Generator</div>
 </header>
-
-<!-- PROFILE -->
 
 <section class="profile">
 
   <img
-    src="profile.png"
+    src="profile.jpg"
     alt="Himanshu Profile"
     class="profile-img">
 
@@ -300,534 +261,309 @@
 
 </section>
 
+<div class="container">
 
-<main class="container">
+  <div class="card">
 
-  <section class="hero">
+    <h1>Generate QR Code</h1>
 
-    <div class="crown">👑</div>
+    <div class="modes">
 
-    <h2>QR <span>KING</span></h2>
+      <button class="mode active" onclick="setMode('text',this)">
+        📝 Text
+      </button>
 
-    <p>
-      हर तरह की जानकारी के लिए अपना QR Code बनाएं।
-    </p>
+      <button class="mode" onclick="setMode('link',this)">
+        🔗 Link
+      </button>
 
-    <p class="tagline">
-      CREATE • SCAN • SHARE
-    </p>
+      <button class="mode" onclick="setMode('phone',this)">
+        📞 Phone
+      </button>
 
-  </section>
+      <button class="mode" onclick="setMode('email',this)">
+        📧 Email
+      </button>
 
+      <button class="mode" onclick="setMode('wifi',this)">
+        📶 Wi-Fi
+      </button>
 
-  <!-- QR TYPES -->
+      <button class="mode" onclick="setMode('contact',this)">
+        👤 Contact
+      </button>
 
-  <div class="grid">
-
-    <button class="type-btn active"
-      onclick="selectType('link', this)">
-      🔗 Link
-    </button>
-
-    <button class="type-btn"
-      onclick="selectType('text', this)">
-      📝 Text
-    </button>
-
-    <button class="type-btn"
-      onclick="selectType('phone', this)">
-      📞 Phone
-    </button>
-
-    <button class="type-btn"
-      onclick="selectType('email', this)">
-      ✉️ Email
-    </button>
-
-    <button class="type-btn"
-      onclick="selectType('wifi', this)">
-      📶 Wi-Fi
-    </button>
-
-    <button class="type-btn"
-      onclick="selectType('contact', this)">
-      👤 Contact
-    </button>
-
-    <button class="type-btn"
-      onclick="selectType('location', this)">
-      📍 Location
-    </button>
-
-  </div>
-
-
-  <section class="card">
-
-    <!-- LINK -->
-
-    <div id="linkBox">
-
-      <label>Website / Link</label>
-
-      <input
-        id="linkInput"
-        type="url"
-        placeholder="https://example.com">
-
-    </div>
-
-
-    <!-- TEXT -->
-
-    <div id="textBox" class="hidden">
-
-      <label>अपना Text लिखें</label>
-
-      <textarea
-        id="textInput"
-        placeholder="यहाँ अपना text लिखें..."></textarea>
-
-    </div>
-
-
-    <!-- PHONE -->
-
-    <div id="phoneBox" class="hidden">
-
-      <label>Phone Number</label>
-
-      <input
-        id="phoneInput"
-        type="tel"
-        placeholder="+91 9876543210">
-
-    </div>
-
-
-    <!-- EMAIL -->
-
-    <div id="emailBox" class="hidden">
-
-      <label>Email Address</label>
-
-      <input
-        id="emailInput"
-        type="email"
-        placeholder="example@gmail.com">
-
-      <label>Email Subject</label>
-
-      <input
-        id="emailSubject"
-        placeholder="Subject">
-
-      <label>Email Message</label>
-
-      <textarea
-        id="emailMessage"
-        placeholder="Message"></textarea>
-
-    </div>
-
-
-    <!-- WIFI -->
-
-    <div id="wifiBox" class="hidden">
-
-      <label>Wi-Fi Name</label>
-
-      <input
-        id="wifiName"
-        placeholder="My WiFi">
-
-      <label>Wi-Fi Password</label>
-
-      <input
-        id="wifiPassword"
-        type="password"
-        placeholder="Password">
-
-      <label>Security</label>
-
-      <select id="wifiSecurity">
-
-        <option value="WPA">WPA / WPA2</option>
-        <option value="WEP">WEP</option>
-        <option value="nopass">No Password</option>
-
-      </select>
-
-    </div>
-
-
-    <!-- CONTACT -->
-
-    <div id="contactBox" class="hidden">
-
-      <label>Name</label>
-
-      <input
-        id="contactName"
-        placeholder="Your Name">
-
-      <label>Phone</label>
-
-      <input
-        id="contactPhone"
-        placeholder="+91 9876543210">
-
-      <label>Email</label>
-
-      <input
-        id="contactEmail"
-        placeholder="example@gmail.com">
-
-    </div>
-
-
-    <!-- LOCATION -->
-
-    <div id="locationBox" class="hidden">
-
-      <label>Latitude</label>
-
-      <input
-        id="latitude"
-        placeholder="25.3176">
-
-      <label>Longitude</label>
-
-      <input
-        id="longitude"
-        placeholder="82.9739">
-
-    </div>
-
-
-    <button
-      class="main-btn"
-      onclick="generateQR()">
-
-      👑 GENERATE QR
-
-    </button>
-
-
-    <div
-      class="qr-area"
-      id="qrArea">
-
-      <h3>आपका QR Code तैयार है 🎉</h3>
-
-      <div id="qrcode"></div>
-
-      <br>
-
-      <a
-        id="downloadBtn"
-        class="download-btn"
-        href="#"
-        download="qr-king.png">
-
-        ⬇️ Download QR
-
-      </a>
-
-      <button
-        class="copy-btn"
-        onclick="copyQRData()">
-
-        📋 Copy Data
-
+      <button class="mode" onclick="setMode('location',this)">
+        📍 Location
       </button>
 
     </div>
 
-  </section>
+    <div id="fields"></div>
 
-</main>
+    <button class="generate" onclick="generateQR()">
+      👑 Generate QR Code
+    </button>
 
+    <div class="qr-box">
+
+      <div id="qrcode"></div>
+
+      <div class="actions">
+
+        <button class="action" onclick="downloadQR()">
+          ⬇️ Download QR
+        </button>
+
+        <button class="action" onclick="copyData()">
+          📋 Copy QR Data
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 <footer>
-
-  © 2026 <strong>QR KING</strong>
-  • Created by Himanshu
-
+  © 2026 QR KING • Created by Himanshu
 </footer>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
 
-  let currentType = "link";
-  let currentQRData = "";
+let currentMode = "text";
+let lastData = "";
 
-  const boxes = [
-    "linkBox",
-    "textBox",
-    "phoneBox",
-    "emailBox",
-    "wifiBox",
-    "contactBox",
-    "locationBox"
-  ];
+function setMode(mode,button){
 
+  currentMode = mode;
 
-  function selectType(type, button) {
+  document.querySelectorAll(".mode").forEach(btn=>{
+    btn.classList.remove("active");
+  });
 
-    currentType = type;
+  button.classList.add("active");
 
-    boxes.forEach(id => {
-      document.getElementById(id)
-        .classList.add("hidden");
+  showFields();
+}
+
+function showFields(){
+
+  const fields = document.getElementById("fields");
+
+  if(currentMode === "text"){
+
+    fields.innerHTML = `
+      <label>Enter Text</label>
+      <textarea id="data" placeholder="Write your text here..."></textarea>
+    `;
+
+  }
+
+  else if(currentMode === "link"){
+
+    fields.innerHTML = `
+      <label>Website Link</label>
+      <input id="data" type="url" placeholder="https://example.com">
+    `;
+
+  }
+
+  else if(currentMode === "phone"){
+
+    fields.innerHTML = `
+      <label>Phone Number</label>
+      <input id="data" type="tel" placeholder="+91XXXXXXXXXX">
+    `;
+
+  }
+
+  else if(currentMode === "email"){
+
+    fields.innerHTML = `
+      <label>Email Address</label>
+      <input id="data" type="email" placeholder="example@gmail.com">
+
+      <label>Subject</label>
+      <input id="subject" placeholder="Subject">
+
+      <label>Message</label>
+      <textarea id="message" placeholder="Email message"></textarea>
+    `;
+
+  }
+
+  else if(currentMode === "wifi"){
+
+    fields.innerHTML = `
+      <label>Wi-Fi Name</label>
+      <input id="ssid" placeholder="Wi-Fi Name">
+
+      <label>Password</label>
+      <input id="password" type="password" placeholder="Wi-Fi Password">
+
+      <label>Security</label>
+      <input id="security" value="WPA" placeholder="WPA / WEP / nopass">
+    `;
+
+  }
+
+  else if(currentMode === "contact"){
+
+    fields.innerHTML = `
+      <label>Name</label>
+      <input id="name" placeholder="Name">
+
+      <label>Phone</label>
+      <input id="phone" placeholder="+91XXXXXXXXXX">
+
+      <label>Email</label>
+      <input id="email" placeholder="example@gmail.com">
+    `;
+
+  }
+
+  else if(currentMode === "location"){
+
+    fields.innerHTML = `
+      <label>Location / Google Maps Link</label>
+      <input id="data" placeholder="Paste Google Maps link">
+    `;
+
+  }
+}
+
+function generateQR(){
+
+  let data = "";
+
+  if(currentMode === "text"){
+    data = document.getElementById("data").value.trim();
+  }
+
+  else if(currentMode === "link"){
+    data = document.getElementById("data").value.trim();
+  }
+
+  else if(currentMode === "phone"){
+
+    const phone = document.getElementById("data").value.trim();
+
+    data = "tel:" + phone;
+  }
+
+  else if(currentMode === "email"){
+
+    const email = document.getElementById("data").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    data =
+      "mailto:" + email +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(message);
+  }
+
+  else if(currentMode === "wifi"){
+
+    const ssid = document.getElementById("ssid").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const security = document.getElementById("security").value.trim();
+
+    data =
+      "WIFI:T:" + security +
+      ";S:" + ssid +
+      ";P:" + password +
+      ";;";
+  }
+
+  else if(currentMode === "contact"){
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    data =
+      "BEGIN:VCARD\n" +
+      "VERSION:3.0\n" +
+      "FN:" + name + "\n" +
+      "TEL:" + phone + "\n" +
+      "EMAIL:" + email + "\n" +
+      "END:VCARD";
+  }
+
+  else if(currentMode === "location"){
+
+    data = document.getElementById("data").value.trim();
+  }
+
+  if(!data){
+
+    alert("Please enter your information first.");
+
+    return;
+  }
+
+  lastData = data;
+
+  const qr = document.getElementById("qrcode");
+
+  qr.innerHTML = "";
+
+  new QRCode(qr,{
+    text:data,
+    width:220,
+    height:220,
+    correctLevel:QRCode.CorrectLevel.H
+  });
+
+}
+
+function downloadQR(){
+
+  const img = document.querySelector("#qrcode img");
+
+  if(!img){
+
+    alert("First generate a QR code.");
+
+    return;
+  }
+
+  const link = document.createElement("a");
+
+  link.href = img.src;
+
+  link.download = "QR-KING.png";
+
+  link.click();
+
+}
+
+function copyData(){
+
+  if(!lastData){
+
+    alert("First generate a QR code.");
+
+    return;
+  }
+
+  navigator.clipboard.writeText(lastData)
+    .then(()=>{
+      alert("QR data copied!");
+    })
+    .catch(()=>{
+      alert("Copy failed.");
     });
 
-    document.getElementById(type + "Box")
-      .classList.remove("hidden");
+}
 
-    document.querySelectorAll(".type-btn")
-      .forEach(btn =>
-        btn.classList.remove("active")
-      );
-
-    button.classList.add("active");
-
-    document.getElementById("qrArea")
-      .style.display = "none";
-  }
-
-
-  function generateQR() {
-
-    let data = "";
-
-
-    if (currentType === "link") {
-
-      data =
-        document.getElementById("linkInput")
-        .value.trim();
-
-      if (!data) {
-        alert("कृपया Website Link डालें।");
-        return;
-      }
-
-    }
-
-
-    if (currentType === "text") {
-
-      data =
-        document.getElementById("textInput")
-        .value.trim();
-
-      if (!data) {
-        alert("कृपया Text लिखें।");
-        return;
-      }
-
-    }
-
-
-    if (currentType === "phone") {
-
-      const phone =
-        document.getElementById("phoneInput")
-        .value.trim();
-
-      if (!phone) {
-        alert("कृपया Phone Number डालें।");
-        return;
-      }
-
-      data = "tel:" + phone;
-
-    }
-
-
-    if (currentType === "email") {
-
-      const email =
-        document.getElementById("emailInput")
-        .value.trim();
-
-      const subject =
-        document.getElementById("emailSubject")
-        .value.trim();
-
-      const message =
-        document.getElementById("emailMessage")
-        .value.trim();
-
-      if (!email) {
-        alert("कृपया Email Address डालें।");
-        return;
-      }
-
-      data =
-        "mailto:" +
-        email +
-        "?subject=" +
-        encodeURIComponent(subject) +
-        "&body=" +
-        encodeURIComponent(message);
-
-    }
-
-
-    if (currentType === "wifi") {
-
-      const name =
-        document.getElementById("wifiName").value;
-
-      const password =
-        document.getElementById("wifiPassword").value;
-
-      const security =
-        document.getElementById("wifiSecurity").value;
-
-      if (!name) {
-        alert("कृपया Wi-Fi Name डालें।");
-        return;
-      }
-
-      data =
-        "WIFI:T:" +
-        security +
-        ";S:" +
-        escapeQR(name) +
-        ";P:" +
-        escapeQR(password) +
-        ";;";
-
-    }
-
-
-    if (currentType === "contact") {
-
-      const name =
-        document.getElementById("contactName").value;
-
-      const phone =
-        document.getElementById("contactPhone").value;
-
-      const email =
-        document.getElementById("contactEmail").value;
-
-      if (!name && !phone && !email) {
-        alert("Contact details डालें।");
-        return;
-      }
-
-      data =
-        "BEGIN:VCARD\n" +
-        "VERSION:3.0\n" +
-        "FN:" + name + "\n" +
-        "TEL:" + phone + "\n" +
-        "EMAIL:" + email + "\n" +
-        "END:VCARD";
-
-    }
-
-
-    if (currentType === "location") {
-
-      const lat =
-        document.getElementById("latitude")
-        .value.trim();
-
-      const lon =
-        document.getElementById("longitude")
-        .value.trim();
-
-      if (!lat || !lon) {
-        alert("Latitude और Longitude डालें।");
-        return;
-      }
-
-      data =
-        "https://www.google.com/maps?q=" +
-        encodeURIComponent(lat + "," + lon);
-
-    }
-
-
-    currentQRData = data;
-
-    const qrContainer =
-      document.getElementById("qrcode");
-
-    qrContainer.innerHTML = "";
-
-
-    new QRCode(qrContainer, {
-
-      text: data,
-
-      width: 220,
-
-      height: 220,
-
-      correctLevel:
-        QRCode.CorrectLevel.H
-
-    });
-
-
-    document.getElementById("qrArea")
-      .style.display = "block";
-
-
-    setTimeout(() => {
-
-      const canvas =
-        qrContainer.querySelector("canvas");
-
-      if (canvas) {
-
-        document.getElementById("downloadBtn")
-          .href =
-          canvas.toDataURL("image/png");
-
-      }
-
-    }, 200);
-
-  }
-
-
-  function escapeQR(value) {
-
-    return value
-      .replace(/\\/g, "\\\\")
-      .replace(/;/g, "\\;")
-      .replace(/,/g, "\\,")
-      .replace(/:/g, "\\:");
-
-  }
-
-
-  async function copyQRData() {
-
-    if (!currentQRData) return;
-
-    try {
-
-      await navigator.clipboard
-        .writeText(currentQRData);
-
-      alert("QR का Data Copy हो गया ✅");
-
-    } catch {
-
-      alert("Copy नहीं हो पाया।");
-
-    }
-
-  }
+showFields();
 
 </script>
 
