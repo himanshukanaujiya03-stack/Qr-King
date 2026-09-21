@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#050816">
-<meta name="description" content="QR KING PRO - All in One Digital Utility Hub by Himanshu">
+<meta name="description" content="QR KING PRO - All in One Digital Utility Hub by Himanshu. QR Generator, Barcode, Scanner, Calculators, Developer Tools and Digital Utilities.">
 <meta name="google-site-verification" content="px4if5Xe8_DG2hEbGlh0kYsZ4Gxt3bEF6CAnEBOm-zM">
+
 <link rel="icon" type="image/jpeg" href="profile.jpg">
+<link rel="apple-touch-icon" href="profile.jpg">
 <link rel="canonical" href="https://qr-king-pro.pages.dev/">
-<title>QR KING PRO 👑 | Digital Utility Hub</title>
+
+<title>QR KING PRO 👑 | Digital Utility Hub by HIMANSHU</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
@@ -16,34 +19,639 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 html{scroll-behavior:smooth}
-body{font-family:Arial,sans-serif;background:#040611;color:#fff;line-height:1.5}
-body:before{content:"";position:fixed;inset:0;background:linear-gradient(#00eaff09 1px,transparent 1px),linear-gradient(90deg,#00eaff09 1px,transparent 1px);background-size:45px 45px;z-index:-1}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#030511;
+color:#fff;
+line-height:1.5;
+overflow-x:hidden;
+}
+
+body:before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-3;
+background:
+radial-gradient(circle at 15% 15%,#00eaff18,transparent 28%),
+radial-gradient(circle at 85% 25%,#8c5cff18,transparent 28%),
+radial-gradient(circle at 50% 90%,#ff31d214,transparent 30%);
+}
+
+body:after{
+content:"";
+position:fixed;
+inset:0;
+z-index:-2;
+opacity:.18;
+background:
+linear-gradient(#00eaff0d 1px,transparent 1px),
+linear-gradient(90deg,#00eaff0d 1px,transparent 1px);
+background-size:45px 45px;
+pointer-events:none;
+}
+
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-header{position:sticky;top:0;z-index:999;background:#050816dd;backdrop-filter:blur(15px);border-bottom:1px solid #00eaff22}
-.nav,.container{width:min(1200px,94%);margin:auto}
-.nav{padding:14px 0;display:flex;justify-content:space-between;align-items:center;gap:15px}
-.logo{font-size:21px;font-weight:bold;color:#00eaff}.logo small{display:block;font-size:8px;letter-spacing:3px;color:#aaa}
-nav{display:flex;gap:7px;flex-wrap:wrap}nav a{color:#ddd;text-decoration:none;padding:7px 10px;border-radius:10px;font-size:13px}nav a:hover{color:#00eaff;background:#00eaff12}
-.hero{text-align:center;padding:55px 0 35px}.badge{display:inline-block;border:1px solid #00eaff44;border-radius:30px;padding:7px 14px;color:#35ff9a;font-size:12px}
-.hero h1{font-size:clamp(45px,10vw,90px);line-height:1;margin:20px 0;background:linear-gradient(90deg,#00eaff,#8c5cff,#ff31d2);-webkit-background-clip:text;color:transparent}
-.hero p{color:#aaa;max-width:700px;margin:auto}.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
-.btn{display:inline-block;padding:12px 18px;border-radius:12px;background:#00eaff;color:#001014;text-decoration:none;font-weight:bold}.btn.alt{background:#ffffff0d;color:#fff;border:1px solid #00eaff33}
-.telegram{padding:10px 0 25px;text-align:center}.telegram-card{padding:18px;border:1px solid #00eaff33;background:#ffffff08;border-radius:20px}.telegram h2{color:#00eaff}.telegram p{color:#aaa;font-size:13px}
-#telegramQRcode{background:#fff;width:max-content;padding:10px;margin:14px auto;border-radius:10px}.telegram a{color:#00eaff;text-decoration:none;font-weight:bold}
-.profile{text-align:center;padding:25px 0}.profile img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:2px solid #8c5cff;box-shadow:0 0 30px #8c5cff55}.profile p{color:#aaa}
-.section{padding:30px 0}.section-title{text-align:center;margin-bottom:20px}.section-title h2{color:#00eaff;font-size:28px}.section-title p{color:#888;font-size:13px}
-.search{width:100%;padding:14px;background:#ffffff08;border:1px solid #00eaff33;border-radius:14px;color:#fff;outline:none;margin-bottom:14px}
-.filters{display:flex;gap:8px;overflow:auto;margin-bottom:15px}.filter{white-space:nowrap;padding:8px 12px;border-radius:20px;background:#ffffff08;color:#aaa;border:1px solid #ffffff12}.filter.active,.filter:hover{color:#00eaff;border-color:#00eaff55}
-.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}.tool{background:#ffffff07;border:1px solid #ffffff12;border-radius:18px;padding:18px;backdrop-filter:blur(8px)}.tool h3{color:#00eaff;margin-bottom:6px}.tool p{color:#999;font-size:12px;margin-bottom:10px}
-.tool input,.tool textarea,.tool select{width:100%;padding:11px;margin:5px 0;background:#02040c;border:1px solid #ffffff18;border-radius:10px;color:#fff;outline:none}.tool textarea{min-height:100px;resize:vertical}
-.tool button{padding:10px 13px;margin-top:6px;border:0;border-radius:10px;background:#00eaff;font-weight:bold}.tool button.secondary{background:#ffffff0d;color:#fff;border:1px solid #ffffff15}
-.result,.scan-status{margin-top:10px;padding:10px;border-radius:10px;background:#00000055;color:#35ff9a;word-break:break-word;font-size:13px}.qrbox{background:#fff;padding:10px;width:max-content;margin:12px auto;border-radius:8px}.barbox{background:#fff;padding:10px;width:100%;overflow:auto;margin:10px auto;border-radius:8px;text-align:center}.barbox svg{max-width:100%;height:auto}
-video{width:100%;min-height:220px;background:#000;border-radius:12px;object-fit:cover}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-footer{text-align:center;padding:30px 0;margin-top:40px;border-top:1px solid #ffffff12;color:#777}footer strong{color:#00eaff}
-.opening{position:fixed;inset:0;z-index:999999;background:#03050d;display:flex;align-items:center;justify-content:center;text-align:center;transition:1s}.opening.hide{opacity:0;visibility:hidden}.opening img{width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #00eaff;box-shadow:0 0 35px #00eaff}.opening h1{color:#00eaff;margin-top:18px;font-size:34px}.opening p{color:#aaa}.opening small{display:block;color:#35ff9a;margin-top:10px}
-@media(max-width:600px){.nav{flex-direction:column;align-items:flex-start}.row{grid-template-columns:1fr}}
+
+.container{
+width:min(1200px,94%);
+margin:auto;
+}
+
+/* HEADER */
+header{
+position:sticky;
+top:0;
+z-index:999;
+background:#050816dd;
+backdrop-filter:blur(18px);
+border-bottom:1px solid #00eaff25;
+box-shadow:0 5px 30px #0008;
+}
+
+.nav{
+width:min(1200px,94%);
+margin:auto;
+padding:12px 0;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.brand img{
+width:45px;
+height:45px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #00eaff;
+box-shadow:0 0 18px #00eaff88;
+}
+
+.logo{
+font-size:20px;
+font-weight:900;
+color:#00eaff;
+}
+
+.logo small{
+display:block;
+font-size:8px;
+letter-spacing:3px;
+color:#999;
+}
+
+nav{
+display:flex;
+gap:5px;
+flex-wrap:wrap;
+justify-content:flex-end;
+}
+
+nav a{
+color:#ddd;
+text-decoration:none;
+padding:8px 10px;
+border-radius:10px;
+font-size:12px;
+transition:.25s;
+}
+
+nav a:hover{
+color:#00eaff;
+background:#00eaff12;
+}
+
+/* OPENING */
+.opening{
+position:fixed;
+inset:0;
+z-index:999999;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+overflow:hidden;
+background:
+radial-gradient(circle at center,#101c40 0,#03050d 55%,#010208 100%);
+transition:1.2s;
+}
+
+.opening.hide{
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+}
+
+.opening:before,
+.opening:after{
+content:"";
+position:absolute;
+border-radius:50%;
+border:1px solid #00eaff35;
+animation:orbit 8s linear infinite;
+}
+
+.opening:before{
+width:330px;
+height:330px;
+box-shadow:0 0 50px #00eaff22;
+}
+
+.opening:after{
+width:500px;
+height:500px;
+border-color:#8c5cff25;
+animation-duration:13s;
+animation-direction:reverse;
+}
+
+.open-content{
+position:relative;
+z-index:2;
+}
+
+.open-photo{
+width:145px;
+height:145px;
+object-fit:cover;
+border-radius:50%;
+border:3px solid #00eaff;
+box-shadow:
+0 0 20px #00eaff,
+0 0 60px #8c5cff,
+0 0 100px #ff31d244;
+animation:float 3s ease-in-out infinite;
+}
+
+.open-content h1{
+font-size:clamp(35px,9vw,70px);
+margin:20px 0 5px;
+font-weight:1000;
+background:linear-gradient(90deg,#00eaff,#fff,#8c5cff,#ff31d2);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.open-content p{
+color:#aaa;
+letter-spacing:3px;
+font-size:13px;
+}
+
+.open-content small{
+display:block;
+margin-top:12px;
+color:#35ff9a;
+letter-spacing:2px;
+}
+
+.open-loader{
+width:220px;
+height:4px;
+margin:22px auto 0;
+border-radius:10px;
+background:#ffffff12;
+overflow:hidden;
+}
+
+.open-loader span{
+display:block;
+height:100%;
+width:40%;
+background:linear-gradient(90deg,#00eaff,#8c5cff,#ff31d2);
+animation:load 2s infinite;
+}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:60px 0 40px;
+}
+
+.badge{
+display:inline-block;
+padding:8px 15px;
+border:1px solid #35ff9a55;
+border-radius:30px;
+background:#35ff9a0b;
+color:#35ff9a;
+font-size:12px;
+box-shadow:0 0 25px #35ff9a12;
+}
+
+.hero h1{
+font-size:clamp(48px,11vw,100px);
+line-height:.95;
+margin:22px 0;
+font-weight:1000;
+letter-spacing:-3px;
+background:linear-gradient(
+90deg,
+#00eaff,
+#4d7cff,
+#8c5cff,
+#ff31d2,
+#00eaff
+);
+background-size:300%;
+-webkit-background-clip:text;
+color:transparent;
+animation:gradientMove 6s linear infinite;
+}
+
+.hero p{
+max-width:760px;
+margin:auto;
+color:#aaa;
+font-size:15px;
+}
+
+.actions{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+margin-top:25px;
+}
+
+.btn{
+display:inline-block;
+padding:13px 20px;
+border-radius:13px;
+text-decoration:none;
+font-weight:800;
+color:#001014;
+background:linear-gradient(135deg,#00eaff,#35ff9a);
+box-shadow:0 8px 30px #00eaff30;
+}
+
+.btn.alt{
+color:#fff;
+background:#ffffff0b;
+border:1px solid #00eaff35;
+}
+
+/* TELEGRAM */
+.telegram{
+padding:15px 0 30px;
+text-align:center;
+}
+
+.telegram-card{
+padding:22px;
+border-radius:22px;
+border:1px solid #00eaff35;
+background:linear-gradient(145deg,#ffffff09,#00eaff05);
+box-shadow:0 15px 50px #0006;
+}
+
+.telegram h2{
+color:#00eaff;
+}
+
+.telegram p{
+color:#999;
+font-size:13px;
+}
+
+#telegramQRcode{
+width:max-content;
+padding:10px;
+margin:15px auto;
+background:#fff;
+border-radius:12px;
+}
+
+.telegram a{
+color:#00eaff;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* PROFILE */
+.profile{
+text-align:center;
+padding:30px 0;
+}
+
+.profile-card{
+max-width:500px;
+margin:auto;
+padding:25px;
+border-radius:25px;
+background:linear-gradient(145deg,#ffffff0a,#8c5cff08);
+border:1px solid #ffffff15;
+box-shadow:0 20px 60px #0007;
+}
+
+.profile img{
+width:125px;
+height:125px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #8c5cff;
+box-shadow:
+0 0 25px #8c5cff,
+0 0 60px #00eaff33;
+}
+
+.profile h2{
+margin-top:12px;
+font-size:27px;
+}
+
+.profile p{
+color:#aaa;
+font-size:13px;
+}
+
+/* SECTION */
+.section{
+padding:35px 0;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:22px;
+}
+
+.section-title h2{
+font-size:30px;
+color:#00eaff;
+}
+
+.section-title p{
+font-size:13px;
+color:#888;
+margin-top:3px;
+}
+
+/* SEARCH */
+.search{
+width:100%;
+padding:15px;
+border-radius:15px;
+background:#ffffff08;
+border:1px solid #00eaff30;
+color:#fff;
+outline:none;
+margin-bottom:15px;
+box-shadow:inset 0 0 20px #0004;
+}
+
+.filters{
+display:flex;
+gap:8px;
+overflow:auto;
+padding-bottom:8px;
+margin-bottom:18px;
+}
+
+.filter{
+white-space:nowrap;
+padding:9px 14px;
+border-radius:20px;
+background:#ffffff08;
+border:1px solid #ffffff14;
+color:#aaa;
+}
+
+.filter.active,
+.filter:hover{
+color:#00eaff;
+border-color:#00eaff66;
+background:#00eaff0b;
+}
+
+/* TOOLS */
+.tools{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:18px;
+}
+
+.tool{
+position:relative;
+overflow:hidden;
+background:linear-gradient(145deg,#ffffff0a,#ffffff03);
+border:1px solid #ffffff13;
+border-radius:22px;
+padding:20px;
+backdrop-filter:blur(12px);
+box-shadow:
+0 15px 40px #0007,
+inset 0 1px 0 #ffffff08;
+transition:.3s;
+}
+
+.tool:before{
+content:"";
+position:absolute;
+top:-70px;
+right:-70px;
+width:140px;
+height:140px;
+border-radius:50%;
+background:#00eaff12;
+filter:blur(25px);
+pointer-events:none;
+}
+
+.tool:hover{
+transform:translateY(-5px);
+border-color:#00eaff45;
+box-shadow:
+0 20px 50px #0008,
+0 0 30px #00eaff0c;
+}
+
+.tool h3{
+position:relative;
+color:#00eaff;
+font-size:19px;
+margin-bottom:5px;
+}
+
+.tool p{
+color:#999;
+font-size:12px;
+margin-bottom:10px;
+}
+
+.tool input,
+.tool textarea,
+.tool select{
+width:100%;
+padding:12px;
+margin:5px 0;
+border-radius:11px;
+background:#02040c;
+border:1px solid #ffffff18;
+color:#fff;
+outline:none;
+}
+
+.tool input:focus,
+.tool textarea:focus,
+.tool select:focus{
+border-color:#00eaff66;
+box-shadow:0 0 15px #00eaff12;
+}
+
+.tool textarea{
+min-height:110px;
+resize:vertical;
+}
+
+.tool button{
+padding:10px 14px;
+margin-top:6px;
+border:0;
+border-radius:11px;
+background:linear-gradient(135deg,#00eaff,#35ff9a);
+color:#001014;
+font-weight:900;
+}
+
+.tool button.secondary{
+background:#ffffff0b;
+color:#fff;
+border:1px solid #ffffff18;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.result,
+.scan-status{
+margin-top:10px;
+padding:11px;
+border-radius:11px;
+background:#00000055;
+color:#35ff9a;
+word-break:break-word;
+font-size:13px;
+}
+
+.qrbox{
+width:max-content;
+max-width:100%;
+padding:10px;
+margin:12px auto;
+background:#fff;
+border-radius:9px;
+}
+
+.qrbox img,
+.qrbox canvas{
+max-width:100%;
+}
+
+.barbox{
+width:100%;
+overflow:auto;
+padding:10px;
+margin:12px auto;
+border-radius:9px;
+background:#fff;
+text-align:center;
+}
+
+.barbox svg{
+max-width:100%;
+height:auto;
+}
+
+video{
+width:100%;
+min-height:220px;
+background:#000;
+border-radius:13px;
+object-fit:cover;
+}
+
+.download-status{
+text-align:center;
+color:#35ff9a;
+font-size:12px;
+min-height:18px;
+margin-top:7px;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:35px 0;
+margin-top:40px;
+border-top:1px solid #ffffff12;
+color:#777;
+}
+
+footer strong{
+color:#00eaff;
+}
+
+/* ANIMATIONS */
+@keyframes orbit{
+from{transform:rotate(0deg) scale(1)}
+to{transform:rotate(360deg) scale(1.02)}
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0) rotateY(0)}
+50%{transform:translateY(-10px) rotateY(8deg)}
+}
+
+@keyframes load{
+0%{transform:translateX(-150%)}
+100%{transform:translateX(550%)}
+}
+
+@keyframes gradientMove{
+0%{background-position:0%}
+100%{background-position:300%}
+}
+
+@media(max-width:600px){
+.nav{
+flex-direction:column;
+align-items:flex-start;
+}
+
+nav{
+justify-content:flex-start;
+}
+
+.hero{
+padding-top:40px;
+}
+
+.hero h1{
+letter-spacing:-2px;
+}
+
+.row{
+grid-template-columns:1fr;
+}
+
+.tool{
+padding:17px;
+}
+}
 </style>
 </head>
 
@@ -53,536 +661,2556 @@ footer{text-align:center;padding:30px 0;margin-top:40px;border-top:1px solid #ff
 <section class="telegram container">
 <div class="telegram-card">
 <h2>📲 JOIN OUR TELEGRAM</h2>
-<p>Scan QR to join Telegram</p>
+<p>Scan the QR code to join our Telegram channel</p>
 <div id="telegramQRcode"></div>
-<a href="https://t.me/Brokenboy221716" target="_blank">@Brokenboy221716</a>
+<a href="https://t.me/Brokenboy221716" target="_blank" rel="noopener">
+@Brokenboy221716
+</a>
 </div>
 </section>
 
-<!-- OPENING -->
+<!-- 3D OPENING -->
 <div class="opening" id="openingScreen">
-<div>
-<img src="profile.jpg" alt="Himanshu">
+<div class="open-content">
+
+<img class="open-photo" src="profile.jpg" alt="HIMANSHU">
+
 <h1>👑 QR KING PRO</h1>
+
 <p>⚡ DIGITAL TECHNOLOGY HUB</p>
-<small>Created by HIMANSHU</small>
+
+<small>CREATED BY HIMANSHU</small>
+
+<div class="open-loader">
+<span></span>
+</div>
+
 </div>
 </div>
 
+<!-- HEADER -->
 <header>
 <div class="nav">
-<div class="logo">QR KING PRO<small>DIGITAL UTILITY HUB</small></div>
+
+<div class="brand">
+<img src="profile.jpg" alt="HIMANSHU">
+<div class="logo">
+QR KING PRO
+<small>DIGITAL UTILITY HUB</small>
+</div>
+</div>
+
 <nav>
-<a href="#home">Home</a><a href="#tools">Tools</a><a href="#barcode">Barcode</a><a href="#profile">Profile</a><a href="#about">About</a>
+<a href="#home">🏠 Home</a>
+<a href="#tools">🛠️ Tools</a>
+<a href="#barcode">🔳 Barcode</a>
+<a href="#profile">👤 Profile</a>
+<a href="#about">ℹ️ About</a>
 </nav>
+
 </div>
 </header>
 
 <main id="home">
 
+<!-- HERO -->
 <section class="hero container">
-<span class="badge">⚡ SYSTEM ONLINE • DIGITAL UTILITY HUB</span>
+
+<span class="badge">
+⚡ SYSTEM ONLINE • NEXT GENERATION DIGITAL HUB
+</span>
+
 <h1>QR KING PRO</h1>
-<p>QR Codes, Long Text QR, Barcode, Scanner, Calculators, Developer Tools and Digital Utilities — all in one place.</p>
+
+<p>
+📱 QR Codes • 📄 Long Text QR • 🔳 Barcode • 📷 Scanner •
+🧮 Calculators • 🖼️ Image Tools • 💻 Developer Tools • 🛠️ Utilities
+</p>
+
 <div class="actions">
-<a class="btn" href="#tools">🚀 Explore Tools</a>
-<a class="btn alt" href="#barcode">🔳 Barcode Studio</a>
+<a class="btn" href="#tools">🚀 Explore All Tools</a>
+<a class="btn alt" href="#barcode">🔳 Open Barcode Studio</a>
 </div>
+
 </section>
 
+<!-- PROFILE -->
 <section class="profile container" id="profile">
+
+<div class="profile-card">
+
 <img src="profile.jpg" alt="HIMANSHU">
+
 <h2>HIMANSHU</h2>
-<p>AI Creator • Digital Designer • QR KING PRO</p>
+
+<p>
+👑 Creator of QR KING PRO<br>
+AI Creator • Digital Designer • Technology Creator
+</p>
+
+</div>
+
 </section>
 
+<!-- TOOLS -->
 <section class="section container" id="tools">
 
 <div class="section-title">
-<h2>🛠️ Digital Tools</h2>
-<p>Powerful tools in one place</p>
+<h2>🛠️ All Digital Tools</h2>
+<p>Everything you need — simple, fast and professional.</p>
 </div>
 
-<input class="search" id="toolSearch" placeholder="🔍 Search tools...">
+<input
+class="search"
+id="toolSearch"
+placeholder="🔍 Search any tool..."
+>
 
 <div class="filters">
-<button class="filter active" onclick="filterTools('all',this)">All</button>
-<button class="filter" onclick="filterTools('qr',this)">QR</button>
-<button class="filter" onclick="filterTools('barcode',this)">Barcode</button>
-<button class="filter" onclick="filterTools('calc',this)">Calculator</button>
-<button class="filter" onclick="filterTools('image',this)">Image</button>
-<button class="filter" onclick="filterTools('dev',this)">Developer</button>
-<button class="filter" onclick="filterTools('other',this)">Other</button>
+
+<button class="filter active"
+onclick="filterTools('all',this)">
+🌐 All
+</button>
+
+<button class="filter"
+onclick="filterTools('qr',this)">
+📱 QR
+</button>
+
+<button class="filter"
+onclick="filterTools('barcode',this)">
+🔳 Barcode
+</button>
+
+<button class="filter"
+onclick="filterTools('calc',this)">
+🧮 Calculator
+</button>
+
+<button class="filter"
+onclick="filterTools('image',this)">
+🖼️ Image
+</button>
+
+<button class="filter"
+onclick="filterTools('dev',this)">
+💻 Developer
+</button>
+
+<button class="filter"
+onclick="filterTools('other',this)">
+🛠️ Other
+</button>
+
 </div>
 
 <div class="tools">
 
-<!-- NORMAL QR -->
-<div class="tool" data-cat="qr" data-name="QR Generator">
-<h3>📱 QR Code Generator</h3><p>Text या URL से QR बनाएं।</p>
-<input id="qrText" placeholder="Text / URL">
-<button onclick="makeQR()">Generate QR</button>
+<!-- QR -->
+<div class="tool" data-cat="qr" data-name="QR Code Generator">
+
+<h3>📱 QR Code Generator</h3>
+
+<p>
+Text या URL को तुरंत QR Code में बदलें।
+</p>
+
+<input
+id="qrText"
+placeholder="🔗 Text / URL यहाँ डालें"
+>
+
+<button onclick="makeQR()">
+✨ Generate QR
+</button>
+
 <div id="qrcode" class="qrbox"></div>
-<button class="secondary" onclick="downloadQR()">⬇️ Download</button>
+
+<button
+class="secondary"
+onclick="downloadQR()">
+📥 Download QR PNG
+</button>
+
+<div id="qrDownloadStatus" class="download-status"></div>
+
 </div>
 
-<!-- LONG TEXT QR -->
+<!-- LONG TEXT -->
 <div class="tool" data-cat="qr" data-name="Long Text One QR">
+
 <h3>📄 Long Text → 1 QR</h3>
-<p>3–5 पेज या उससे ज्यादा text को एक ही QR link में share करें।</p>
-<textarea id="longTextInput" style="min-height:220px" placeholder="यहाँ पूरा लंबा text paste करें..."></textarea>
-<input id="longTextTitle" placeholder="Title (optional)">
-<button onclick="createLongTextQR()">🔗 Create 1 QR</button>
-<div id="longTextStatus" class="result">Ready</div>
+
+<p>
+3–5 pages या उससे ज्यादा text को एक QR link में share करें।
+</p>
+
+<textarea
+id="longTextInput"
+style="min-height:220px"
+placeholder="📝 पूरा लंबा text यहाँ paste करें..."
+></textarea>
+
+<input
+id="longTextTitle"
+placeholder="📌 Title (optional)"
+>
+
+<button onclick="createLongTextQR()">
+🔗 Create One QR
+</button>
+
+<div id="longTextStatus" class="result">
+Ready
+</div>
+
 <div id="longTextQR" class="qrbox"></div>
-<button id="downloadLongQR" class="secondary" style="display:none" onclick="downloadLongTextQR()">⬇️ Download QR</button>
-<div id="longTextLink" class="result" style="display:none"></div>
+
+<button
+id="downloadLongQR"
+class="secondary"
+style="display:none"
+onclick="downloadLongTextQR()">
+📥 Download QR
+</button>
+
+<div
+id="longTextLink"
+class="result"
+style="display:none">
+</div>
+
 </div>
 
 <!-- WIFI -->
 <div class="tool" data-cat="qr" data-name="WiFi QR">
+
 <h3>📶 Wi-Fi QR</h3>
-<input id="wifiName" placeholder="Wi-Fi Name"><input id="wifiPass" placeholder="Password">
-<select id="wifiType"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">No Password</option></select>
-<button onclick="makeWiFiQR()">Generate</button><div id="wifiQR" class="qrbox"></div>
+
+<p>
+Wi-Fi details को QR में बदलें।
+</p>
+
+<input id="wifiName" placeholder="📡 Wi-Fi Name">
+<input id="wifiPass" placeholder="🔐 Password">
+
+<select id="wifiType">
+<option value="WPA">WPA / WPA2</option>
+<option value="WEP">WEP</option>
+<option value="nopass">No Password</option>
+</select>
+
+<button onclick="makeWiFiQR()">
+📶 Generate Wi-Fi QR
+</button>
+
+<div id="wifiQR" class="qrbox"></div>
+
 </div>
 
 <!-- WHATSAPP -->
 <div class="tool" data-cat="qr" data-name="WhatsApp QR">
+
 <h3>💬 WhatsApp QR</h3>
-<input id="waNumber" placeholder="Number with country code"><input id="waMessage" placeholder="Message">
-<button onclick="makeWAQR()">Generate</button><div id="waQR" class="qrbox"></div>
+
+<p>
+Number और message से WhatsApp QR बनाएं।
+</p>
+
+<input id="waNumber" placeholder="📞 Number with country code">
+<input id="waMessage" placeholder="💬 Message">
+
+<button onclick="makeWAQR()">
+💚 Generate WhatsApp QR
+</button>
+
+<div id="waQR" class="qrbox"></div>
+
 </div>
 
 <!-- VCARD -->
-<div class="tool" data-cat="qr" data-name="vCard QR">
-<h3>👤 Contact QR</h3>
-<input id="vcName" placeholder="Name"><input id="vcPhone" placeholder="Phone"><input id="vcEmail" placeholder="Email">
-<button onclick="makeVCardQR()">Generate</button><div id="vcQR" class="qrbox"></div>
+<div class="tool" data-cat="qr" data-name="Contact QR">
+
+<h3>👤 Contact / vCard QR</h3>
+
+<p>
+Contact details को एक QR में save करें।
+</p>
+
+<input id="vcName" placeholder="👤 Name">
+<input id="vcPhone" placeholder="📞 Phone">
+<input id="vcEmail" placeholder="📧 Email">
+
+<button onclick="makeVCardQR()">
+👤 Generate Contact QR
+</button>
+
+<div id="vcQR" class="qrbox"></div>
+
 </div>
 
 <!-- BARCODE -->
-<div class="tool" id="barcode" data-cat="barcode" data-name="Advanced Barcode">
-<h3>🔳 Advanced Barcode</h3>
+<div
+class="tool"
+id="barcode"
+data-cat="barcode"
+data-name="Advanced Barcode Studio">
+
+<h3>🔳 Advanced Barcode Studio</h3>
+
+<p>
+Professional barcode formats generate करें।
+</p>
+
 <select id="barcodeType">
-<option value="EAN13">EAN-13</option><option value="EAN8">EAN-8</option>
-<option value="UPC">UPC-A</option><option value="UPCE">UPC-E</option>
-<option value="CODE128">Code 128</option><option value="CODE39">Code 39</option>
-<option value="ITF14">ITF-14</option><option value="codabar">Codabar</option>
+
+<option value="EAN13">EAN-13</option>
+<option value="EAN8">EAN-8</option>
+<option value="UPC">UPC-A</option>
+<option value="UPCE">UPC-E</option>
+<option value="CODE128">Code 128</option>
+<option value="CODE39">Code 39</option>
+<option value="ITF14">ITF-14</option>
+<option value="codabar">Codabar</option>
 <option value="CODE128">GS1-128</option>
+
 </select>
-<input id="barcodeText" placeholder="Barcode value">
-<div class="row"><input id="barWidth" type="number" value="2"><input id="barHeight" type="number" value="80"></div>
-<label style="font-size:12px;color:#aaa"><input id="barText" type="checkbox" checked> Show text</label>
-<button onclick="generateBarcode()">Generate</button>
-<div class="barbox"><svg id="barcodeSVG"></svg></div>
-<button onclick="downloadBarcode()">⬇️ Download SVG</button>
+
+<input
+id="barcodeText"
+placeholder="🔢 Barcode value"
+>
+
+<div class="row">
+<input id="barWidth" type="number" value="2" placeholder="Width">
+<input id="barHeight" type="number" value="80" placeholder="Height">
+</div>
+
+<label style="font-size:12px;color:#aaa">
+<input id="barText" type="checkbox" checked>
+ Show barcode text
+</label>
+
+<button onclick="generateBarcode()">
+🔳 Generate Barcode
+</button>
+
+<div class="barbox">
+<svg id="barcodeSVG"></svg>
+</div>
+
+<button
+class="secondary"
+onclick="downloadBarcode()">
+📥 Download SVG
+</button>
+
 </div>
 
 <!-- CAMERA -->
-<div class="tool" data-cat="barcode" data-name="Camera Barcode Scanner">
-<h3>📷 Camera Barcode Scanner</h3><p>Camera से QR या barcode scan करें।</p>
-<video id="barcodeVideo" playsinline></video>
-<button onclick="startBarcodeCamera()">📷 Start Camera</button>
-<button class="secondary" onclick="stopBarcodeCamera()">⛔ Stop</button>
-<div id="cameraScanResult" class="scan-status">Scanner ready</div>
+<div
+class="tool"
+data-cat="barcode"
+data-name="Camera Barcode Scanner">
+
+<h3>📷 Camera Barcode Scanner</h3>
+
+<p>
+Camera से QR या barcode scan करें।
+</p>
+
+<video
+id="barcodeVideo"
+playsinline>
+</video>
+
+<button onclick="startBarcodeCamera()">
+📷 Start Camera
+</button>
+
+<button
+class="secondary"
+onclick="stopBarcodeCamera()">
+⛔ Stop
+</button>
+
+<div
+id="cameraScanResult"
+class="scan-status">
+Scanner ready
+</div>
+
 </div>
 
 <!-- IMAGE SCANNER -->
-<div class="tool" data-cat="barcode" data-name="Image Barcode Reader">
-<h3>🖼️ Image Barcode Reader</h3><p>Gallery से QR/barcode image पढ़ें।</p>
-<input id="barcodeImage" type="file" accept="image/*">
-<img id="barcodePreview" style="display:none;width:100%;margin-top:10px;border-radius:12px">
-<button onclick="scanBarcodeImage()">🔍 Read</button>
-<div id="imageScanResult" class="scan-status">Image scanner ready</div>
+<div
+class="tool"
+data-cat="barcode"
+data-name="Image Barcode Reader">
+
+<h3>🖼️ Image Barcode Reader</h3>
+
+<p>
+Gallery की image से QR/barcode पढ़ें।
+</p>
+
+<input
+id="barcodeImage"
+type="file"
+accept="image/*"
+>
+
+<img
+id="barcodePreview"
+style="display:none;width:100%;margin-top:10px;border-radius:12px"
+>
+
+<button onclick="scanBarcodeImage()">
+🔍 Read Barcode
+</button>
+
+<div
+id="imageScanResult"
+class="scan-status">
+Image scanner ready
+</div>
+
 </div>
 
 <!-- BATCH -->
-<div class="tool" data-cat="barcode" data-name="Batch Barcode">
-<h3>⚡ Batch Barcode</h3>
-<textarea id="batchBarcode" placeholder="एक line में एक barcode"></textarea>
-<button onclick="batchBarcodeGenerate()">Generate Batch</button>
+<div
+class="tool"
+data-cat="barcode"
+data-name="Batch Barcode">
+
+<h3>⚡ Batch Barcode Generator</h3>
+
+<p>
+हर line में एक barcode डालकर कई barcode बनाएं।
+</p>
+
+<textarea
+id="batchBarcode"
+placeholder="123456
+123457
+123458">
+</textarea>
+
+<button onclick="batchBarcodeGenerate()">
+⚡ Generate Batch
+</button>
+
 <div id="batchResult"></div>
+
 </div>
 
 <!-- LABEL -->
-<div class="tool" data-cat="barcode" data-name="Product Label">
-<h3>🏷️ Product Label</h3>
-<input id="labelProduct" placeholder="Product Name"><input id="labelPrice" placeholder="Price"><input id="labelCode" placeholder="Barcode">
-<button onclick="makeLabel()">Create Label</button><div id="labelResult" class="result"></div>
+<div
+class="tool"
+data-cat="barcode"
+data-name="Product Label">
+
+<h3>🏷️ Product Barcode Label</h3>
+
+<p>
+Product name, price और barcode से label बनाएं।
+</p>
+
+<input id="labelProduct" placeholder="📦 Product Name">
+<input id="labelPrice" placeholder="💰 Price">
+<input id="labelCode" placeholder="🔢 Barcode">
+
+<button onclick="makeLabel()">
+🏷️ Create Label
+</button>
+
+<div id="labelResult" class="result"></div>
+
 </div>
 
 <!-- VALIDATOR -->
-<div class="tool" data-cat="barcode" data-name="Barcode Validator">
+<div
+class="tool"
+data-cat="barcode"
+data-name="Barcode Checksum Validator">
+
 <h3>✅ Barcode Checksum</h3>
-<input id="validateCode" placeholder="EAN-8 / UPC-A / EAN-13">
-<button onclick="validateBarcode()">Validate</button><div id="validateResult" class="result"></div>
+
+<p>
+EAN-8, UPC-A और EAN-13 checksum check करें।
+</p>
+
+<input
+id="validateCode"
+placeholder="🔢 Barcode number"
+>
+
+<button onclick="validateBarcode()">
+✅ Validate
+</button>
+
+<div id="validateResult" class="result"></div>
+
 </div>
 
 <!-- CALCULATOR -->
-<div class="tool" data-cat="calc" data-name="Calculator">
-<h3>🧮 Calculator</h3><input id="calcInput" placeholder="25*4+10/2"><button onclick="calculate()">Calculate</button><div id="calcResult" class="result"></div>
+<div
+class="tool"
+data-cat="calc"
+data-name="Calculator">
+
+<h3>🧮 Calculator</h3>
+
+<p>
+Basic mathematical calculations करें।
+</p>
+
+<input
+id="calcInput"
+placeholder="25*4+10/2"
+>
+
+<button onclick="calculate()">
+🧮 Calculate
+</button>
+
+<div id="calcResult" class="result"></div>
+
 </div>
 
 <!-- PERCENT -->
-<div class="tool" data-cat="calc" data-name="Percentage">
-<h3>📊 Percentage</h3><input id="percentA" type="number" placeholder="Value"><input id="percentB" type="number" placeholder="Percent"><button onclick="percentage()">Calculate</button><div id="percentResult" class="result"></div>
+<div
+class="tool"
+data-cat="calc"
+data-name="Percentage">
+
+<h3>📊 Percentage Calculator</h3>
+
+<input
+id="percentA"
+type="number"
+placeholder="Value"
+>
+
+<input
+id="percentB"
+type="number"
+placeholder="Percent %"
+>
+
+<button onclick="percentage()">
+📊 Calculate
+</button>
+
+<div id="percentResult" class="result"></div>
+
 </div>
 
 <!-- GST -->
-<div class="tool" data-cat="calc" data-name="GST Calculator">
-<h3>🧾 GST Calculator</h3><input id="gstAmount" type="number" placeholder="Amount"><input id="gstRate" type="number" placeholder="GST %"><button onclick="gstCalc()">CGST + SGST</button><div id="gstResult" class="result"></div>
+<div
+class="tool"
+data-cat="calc"
+data-name="GST Calculator">
+
+<h3>🧾 GST Calculator</h3>
+
+<p>
+CGST + SGST calculation।
+</p>
+
+<input
+id="gstAmount"
+type="number"
+placeholder="💰 Amount"
+>
+
+<input
+id="gstRate"
+type="number"
+placeholder="📊 GST %"
+>
+
+<button onclick="gstCalc()">
+🧾 Calculate GST
+</button>
+
+<div id="gstResult" class="result"></div>
+
 </div>
 
 <!-- DISCOUNT -->
-<div class="tool" data-cat="calc" data-name="Discount">
-<h3>💸 Discount</h3><input id="disPrice" type="number" placeholder="Price"><input id="disPercent" type="number" placeholder="Discount %"><button onclick="discountCalc()">Calculate</button><div id="disResult" class="result"></div>
+<div
+class="tool"
+data-cat="calc"
+data-name="Discount Calculator">
+
+<h3>💸 Discount Calculator</h3>
+
+<input
+id="disPrice"
+type="number"
+placeholder="💰 Price"
+>
+
+<input
+id="disPercent"
+type="number"
+placeholder="📊 Discount %"
+>
+
+<button onclick="discountCalc()">
+💸 Calculate
+</button>
+
+<div id="disResult" class="result"></div>
+
 </div>
 
 <!-- EMI -->
-<div class="tool" data-cat="calc" data-name="EMI">
-<h3>🏦 EMI Calculator</h3><input id="emiP" type="number" placeholder="Loan"><input id="emiR" type="number" placeholder="Interest %"><input id="emiN" type="number" placeholder="Months"><button onclick="emiCalc()">Calculate</button><div id="emiResult" class="result"></div>
+<div
+class="tool"
+data-cat="calc"
+data-name="EMI Calculator">
+
+<h3>🏦 EMI Calculator</h3>
+
+<input id="emiP" type="number" placeholder="💰 Loan Amount">
+<input id="emiR" type="number" placeholder="📊 Interest %">
+<input id="emiN" type="number" placeholder="📅 Months">
+
+<button onclick="emiCalc()">
+🏦 Calculate EMI
+</button>
+
+<div id="emiResult" class="result"></div>
+
 </div>
 
 <!-- AGE -->
-<div class="tool" data-cat="other" data-name="Age Calculator">
-<h3>🎂 Age</h3><input id="dob" type="date"><button onclick="ageCalc()">Calculate</button><div id="ageResult" class="result"></div>
+<div
+class="tool"
+data-cat="other"
+data-name="Age Calculator">
+
+<h3>🎂 Age Calculator</h3>
+
+<input id="dob" type="date">
+
+<button onclick="ageCalc()">
+🎂 Calculate Age
+</button>
+
+<div id="ageResult" class="result"></div>
+
 </div>
 
 <!-- UNIT -->
-<div class="tool" data-cat="other" data-name="Unit Converter">
-<h3>📏 Unit Converter</h3><input id="unitValue" type="number" placeholder="Value">
-<select id="unitType"><option value="kmmi">KM → Mile</option><option value="mft">Meter → Feet</option><option value="kgp">KG → Pound</option><option value="cmIn">CM → Inch</option></select>
-<button onclick="unitConvert()">Convert</button><div id="unitResult" class="result"></div>
+<div
+class="tool"
+data-cat="other"
+data-name="Unit Converter">
+
+<h3>📏 Unit Converter</h3>
+
+<input
+id="unitValue"
+type="number"
+placeholder="Value"
+>
+
+<select id="unitType">
+<option value="kmmi">KM → Mile</option>
+<option value="mft">Meter → Feet</option>
+<option value="kgp">KG → Pound</option>
+<option value="cmIn">CM → Inch</option>
+</select>
+
+<button onclick="unitConvert()">
+📏 Convert
+</button>
+
+<div id="unitResult" class="result"></div>
+
 </div>
 
 <!-- IMAGE BASE64 -->
-<div class="tool" data-cat="image" data-name="Image Base64">
-<h3>🖼️ Image → Base64</h3><input id="imgBase64" type="file" accept="image/*"><button onclick="imageToBase64()">Convert</button><textarea id="base64Result"></textarea>
+<div
+class="tool"
+data-cat="image"
+data-name="Image Base64">
+
+<h3>🖼️ Image → Base64</h3>
+
+<p>
+Image को Base64 text में convert करें।
+</p>
+
+<input
+id="imgBase64"
+type="file"
+accept="image/*"
+>
+
+<button onclick="imageToBase64()">
+🖼️ Convert
+</button>
+
+<textarea id="base64Result"></textarea>
+
 </div>
 
 <!-- TEXT -->
-<div class="tool" data-cat="other" data-name="Text Tools">
-<h3>✍️ Text Tools</h3><textarea id="textTool"></textarea>
-<button onclick="upperText()">UPPER</button><button onclick="lowerText()">lower</button><button onclick="copyText()">Copy</button>
+<div
+class="tool"
+data-cat="other"
+data-name="Text Tools">
+
+<h3>✍️ Text Tools</h3>
+
+<textarea
+id="textTool"
+placeholder="अपना text यहाँ लिखें..."
+></textarea>
+
+<button onclick="upperText()">🔠 UPPER</button>
+<button onclick="lowerText()">🔡 lower</button>
+<button onclick="copyText()">📋 Copy</button>
+
 </div>
 
 <!-- NOTES -->
-<div class="tool" data-cat="other" data-name="Notes">
-<h3>📝 Notes</h3><textarea id="notes"></textarea><button onclick="saveNotes()">Save</button><button onclick="loadNotes()">Load</button>
+<div
+class="tool"
+data-cat="other"
+data-name="Notes">
+
+<h3>📝 Notes</h3>
+
+<p>
+Notes phone में locally save करें।
+</p>
+
+<textarea id="notes"></textarea>
+
+<button onclick="saveNotes()">
+💾 Save
+</button>
+
+<button onclick="loadNotes()">
+📂 Load
+</button>
+
 </div>
 
 <!-- TODO -->
-<div class="tool" data-cat="other" data-name="Todo">
-<h3>✅ To-Do</h3><input id="todoInput" placeholder="New task"><button onclick="addTodo()">Add</button><div id="todoList" class="result"></div>
+<div
+class="tool"
+data-cat="other"
+data-name="Todo">
+
+<h3>✅ To-Do List</h3>
+
+<input
+id="todoInput"
+placeholder="📝 New task"
+>
+
+<button onclick="addTodo()">
+➕ Add
+</button>
+
+<div
+id="todoList"
+class="result">
+</div>
+
 </div>
 
 <!-- PASSWORD -->
-<div class="tool" data-cat="dev" data-name="Password Generator">
-<h3>🔐 Password</h3><input id="passLength" type="number" value="16"><button onclick="generatePassword()">Generate</button><div id="passResult" class="result"></div>
+<div
+class="tool"
+data-cat="dev"
+data-name="Password Generator">
+
+<h3>🔐 Password Generator</h3>
+
+<p>
+Random password बनाएं।
+</p>
+
+<input
+id="passLength"
+type="number"
+value="16"
+placeholder="Length"
+>
+
+<button onclick="generatePassword()">
+🔐 Generate
+</button>
+
+<div id="passResult" class="result"></div>
+
 </div>
 
 <!-- UUID -->
-<div class="tool" data-cat="dev" data-name="UUID">
-<h3>🆔 UUID</h3><button onclick="generateUUID()">Generate UUID</button><div id="uuidResult" class="result"></div>
+<div
+class="tool"
+data-cat="dev"
+data-name="UUID Generator">
+
+<h3>🆔 UUID Generator</h3>
+
+<button onclick="generateUUID()">
+🆔 Generate UUID
+</button>
+
+<div id="uuidResult" class="result"></div>
+
 </div>
 
 <!-- JSON -->
-<div class="tool" data-cat="dev" data-name="JSON">
-<h3>{} JSON Formatter</h3><textarea id="jsonInput" placeholder='{"name":"Himanshu"}'></textarea><button onclick="formatJSON()">Format</button><button onclick="minifyJSON()">Minify</button><div id="jsonResult" class="result"></div>
+<div
+class="tool"
+data-cat="dev"
+data-name="JSON Formatter">
+
+<h3>💻 JSON Formatter</h3>
+
+<textarea
+id="jsonInput"
+placeholder='{"name":"Himanshu"}'>
+</textarea>
+
+<button onclick="formatJSON()">✨ Format</button>
+<button onclick="minifyJSON()">📦 Minify</button>
+
+<div id="jsonResult" class="result"></div>
+
 </div>
 
 <!-- BASE64 -->
-<div class="tool" data-cat="dev" data-name="Base64">
-<h3>🔤 Base64</h3><textarea id="baseInput"></textarea><button onclick="baseEncode()">Encode</button><button onclick="baseDecode()">Decode</button><div id="baseResult" class="result"></div>
+<div
+class="tool"
+data-cat="dev"
+data-name="Base64 Encoder">
+
+<h3>🔤 Base64 Encoder</h3>
+
+<textarea id="baseInput"></textarea>
+
+<button onclick="baseEncode()">🔐 Encode</button>
+<button onclick="baseDecode()">🔓 Decode</button>
+
+<div id="baseResult" class="result"></div>
+
 </div>
 
 <!-- URL -->
-<div class="tool" data-cat="dev" data-name="URL Encoder">
-<h3>🔗 URL Encoder</h3><textarea id="urlInput"></textarea><button onclick="urlEncode()">Encode</button><button onclick="urlDecode()">Decode</button><div id="urlResult" class="result"></div>
+<div
+class="tool"
+data-cat="dev"
+data-name="URL Encoder">
+
+<h3>🔗 URL Encoder / Decoder</h3>
+
+<textarea id="urlInput"></textarea>
+
+<button onclick="urlEncode()">🔐 Encode</button>
+<button onclick="urlDecode()">🔓 Decode</button>
+
+<div id="urlResult" class="result"></div>
+
 </div>
 
 <!-- COLOR -->
-<div class="tool" data-cat="dev" data-name="Color">
-<h3>🎨 HEX / RGB</h3><input id="colorInput" type="color" value="#00eaff"><button onclick="colorConvert()">Convert</button><div id="colorResult" class="result"></div>
+<div
+class="tool"
+data-cat="dev"
+data-name="Color Converter">
+
+<h3>🎨 HEX / RGB</h3>
+
+<input
+id="colorInput"
+type="color"
+value="#00eaff"
+>
+
+<button onclick="colorConvert()">
+🎨 Convert
+</button>
+
+<div id="colorResult" class="result"></div>
+
 </div>
 
 <!-- GRADIENT -->
-<div class="tool" data-cat="dev" data-name="Gradient">
-<h3>🌈 Gradient CSS</h3><input id="g1" type="color" value="#00eaff"><input id="g2" type="color" value="#8c5cff"><button onclick="gradientGen()">Generate</button><div id="gradientResult" class="result"></div>
+<div
+class="tool"
+data-cat="dev"
+data-name="Gradient Generator">
+
+<h3>🌈 Gradient CSS</h3>
+
+<input id="g1" type="color" value="#00eaff">
+<input id="g2" type="color" value="#8c5cff">
+
+<button onclick="gradientGen()">
+🌈 Generate Gradient
+</button>
+
+<div id="gradientResult" class="result"></div>
+
 </div>
 
 <!-- STOPWATCH -->
-<div class="tool" data-cat="other" data-name="Stopwatch">
-<h3>⏱️ Stopwatch</h3><div id="stopwatch" class="result">00:00:00</div><button onclick="startStopwatch()">Start</button><button onclick="stopStopwatch()">Stop</button><button onclick="resetStopwatch()">Reset</button>
+<div
+class="tool"
+data-cat="other"
+data-name="Stopwatch">
+
+<h3>⏱️ Stopwatch</h3>
+
+<div
+id="stopwatch"
+class="result">
+00:00:00
+</div>
+
+<button onclick="startStopwatch()">▶️ Start</button>
+<button onclick="stopStopwatch()">⏸️ Stop</button>
+<button onclick="resetStopwatch()">🔄 Reset</button>
+
 </div>
 
 <!-- COUNTDOWN -->
-<div class="tool" data-cat="other" data-name="Countdown">
-<h3>⏳ Countdown</h3><input id="countSeconds" type="number" placeholder="Seconds"><button onclick="startCountdown()">Start</button><div id="countResult" class="result">00:00</div>
+<div
+class="tool"
+data-cat="other"
+data-name="Countdown Timer">
+
+<h3>⏳ Countdown</h3>
+
+<input
+id="countSeconds"
+type="number"
+placeholder="Seconds"
+>
+
+<button onclick="startCountdown()">
+▶️ Start
+</button>
+
+<div
+id="countResult"
+class="result">
+00:00
+</div>
+
 </div>
 
 <!-- CLOCK -->
-<div class="tool" data-cat="other" data-name="Digital Clock">
-<h3>🕐 Digital Clock</h3><div id="digitalClock" class="result"></div>
+<div
+class="tool"
+data-cat="other"
+data-name="Digital Clock">
+
+<h3>🕐 Digital Clock</h3>
+
+<div
+id="digitalClock"
+class="result">
+--:--:--
+</div>
+
 </div>
 
 </div>
 </section>
 
-<section class="section container" id="about">
-<div class="section-title"><h2>👑 About QR KING PRO</h2><p>Created by HIMANSHU</p></div>
-<div class="tool"><p>QR KING PRO is an all-in-one digital utility hub for QR, long text sharing, barcode, scanner, calculators, developer tools and everyday utilities.</p></div>
+<!-- ABOUT -->
+<section
+class="section container"
+id="about">
+
+<div class="section-title">
+<h2>👑 About QR KING PRO</h2>
+<p>Created by HIMANSHU</p>
+</div>
+
+<div class="tool">
+
+<p style="font-size:14px;color:#bbb">
+👑 <strong style="color:#00eaff">
+QR KING PRO
+</strong>
+is an all-in-one digital utility hub created by
+<strong style="color:#00eaff">
+HIMANSHU
+</strong>.
+</p>
+
+<br>
+
+<p style="font-size:14px">
+📱 QR Generator • 📄 Long Text QR •
+🔳 Barcode • 📷 Scanner • 🧮 Calculator •
+🖼️ Image Tools • 💻 Developer Tools •
+📝 Notes • ⏱️ Timer • 🛠️ Utilities
+</p>
+
+</div>
+
 </section>
 
 </main>
 
 <footer>
-<p>© 2026 <strong>QR KING PRO</strong> • Created by HIMANSHU</p>
-<p>⚡ Digital Technology Hub</p>
+
+<p>
+© 2026 <strong>QR KING PRO</strong>
+</p>
+
+<p>
+⚡ Digital Technology Hub • Created by HIMANSHU
+</p>
+
 </footer>
 
 <script>
-/* START */
+
+/* =========================
+   START / OPENING
+========================= */
+
 window.addEventListener("DOMContentLoaded",()=>{
-new QRCode(document.getElementById("telegramQRcode"),{
-text:"https://t.me/Brokenboy221716",width:180,height:180
-});
-loadNotes();renderTodos();updateClock();setInterval(updateClock,1000);
-});
-setTimeout(()=>document.getElementById("openingScreen").classList.add("hide"),6000);
 
-/* SEARCH */
+new QRCode(
+document.getElementById("telegramQRcode"),
+{
+text:"https://t.me/Brokenboy221716",
+width:180,
+height:180
+}
+);
+
+loadNotes();
+renderTodos();
+updateClock();
+
+setInterval(updateClock,1000);
+
+});
+
+setTimeout(()=>{
+const opening=document.getElementById("openingScreen");
+if(opening)opening.classList.add("hide");
+},6000);
+
+
+/* =========================
+   SEARCH
+========================= */
+
 document.getElementById("toolSearch").oninput=function(){
-let q=this.value.toLowerCase();
+
+const q=this.value.toLowerCase().trim();
+
 document.querySelectorAll(".tool").forEach(x=>{
-x.style.display=x.dataset.name.toLowerCase().includes(q)?"block":"none";
+
+const name=(x.dataset.name||"").toLowerCase();
+
+x.style.display=
+!q || name.includes(q)
+?"block"
+:"none";
+
 });
+
 };
+
+
+/* =========================
+   FILTER
+========================= */
+
 function filterTools(cat,b){
-document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
+
+document.querySelectorAll(".filter")
+.forEach(x=>x.classList.remove("active"));
+
 b.classList.add("active");
-document.querySelectorAll(".tool").forEach(x=>{
-x.style.display=cat==="all"||x.dataset.cat===cat?"block":"none";
+
+document.querySelectorAll(".tool")
+.forEach(x=>{
+
+x.style.display=
+cat==="all" || x.dataset.cat===cat
+?"block"
+:"none";
+
 });
+
+document.getElementById("toolSearch").value="";
+
 }
 
-/* QR */
+
+/* =========================
+   QR GENERATOR
+========================= */
+
 function makeQR(){
-let b=document.getElementById("qrcode");b.innerHTML="";
-new QRCode(b,{text:document.getElementById("qrText").value||"QR KING PRO",width:200,height:200});
+
+const box=document.getElementById("qrcode");
+
+const text=
+document.getElementById("qrText").value.trim()
+||"QR KING PRO";
+
+box.innerHTML="";
+
+new QRCode(box,{
+text:text,
+width:240,
+height:240,
+correctLevel:QRCode.CorrectLevel.H
+});
+
+document.getElementById("qrDownloadStatus").textContent=
+"✅ QR तैयार है — अब Download दबाएँ।";
+
 }
-function downloadQR(){
-let i=document.querySelector("#qrcode img");if(!i)return alert("पहले QR बनाओ");
-let a=document.createElement("a");a.href=i.src;a.download="QR-KING-PRO.png";a.click();
+
+
+/* =========================
+   QR DOWNLOAD FIX
+========================= */
+
+async function downloadQR(){
+
+const box=document.getElementById("qrcode");
+
+const status=
+document.getElementById("qrDownloadStatus");
+
+const canvas=box.querySelector("canvas");
+const img=box.querySelector("img");
+
+if(!canvas && !img){
+
+status.textContent=
+"❌ पहले QR Code बनाओ।";
+
+return;
+
 }
+
+try{
+
+let blob;
+
+if(canvas){
+
+blob=await new Promise(resolve=>{
+canvas.toBlob(resolve,"image/png");
+});
+
+}else{
+
+const response=await fetch(img.src);
+blob=await response.blob();
+
+}
+
+if(!blob){
+
+throw new Error("PNG create नहीं हुआ");
+
+}
+
+const url=
+URL.createObjectURL(blob);
+
+const a=document.createElement("a");
+
+a.style.display="none";
+a.href=url;
+a.download="QR-KING-PRO.png";
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+setTimeout(()=>{
+URL.revokeObjectURL(url);
+},2000);
+
+status.textContent=
+"✅ QR PNG download हो गया। Downloads/Gallery check करें।";
+
+}catch(error){
+
+console.error(error);
+
+status.textContent=
+"❌ Download नहीं हो पाया। Browser का Download permission check करें।";
+
+}
+
+}
+
+
+/* =========================
+   WIFI QR
+========================= */
+
 function makeWiFiQR(){
-let b=document.getElementById("wifiQR");b.innerHTML="";
-let t=`WIFI:T:${wifiType.value};S:${wifiName.value};P:${wifiPass.value};;`;
-new QRCode(b,{text:t,width:200,height:200});
+
+const box=document.getElementById("wifiQR");
+
+box.innerHTML="";
+
+const type=document.getElementById("wifiType").value;
+const name=document.getElementById("wifiName").value;
+const pass=document.getElementById("wifiPass").value;
+
+const text=
+`WIFI:T:${type};S:${name};P:${pass};;`;
+
+new QRCode(box,{
+text:text,
+width:220,
+height:220,
+correctLevel:QRCode.CorrectLevel.H
+});
+
 }
+
+
+/* =========================
+   WHATSAPP QR
+========================= */
+
 function makeWAQR(){
-let b=document.getElementById("waQR");b.innerHTML="";
-let n=waNumber.value.replace(/\D/g,""),m=encodeURIComponent(waMessage.value);
-new QRCode(b,{text:`https://wa.me/${n}?text=${m}`,width:200,height:200});
+
+const box=document.getElementById("waQR");
+
+box.innerHTML="";
+
+const number=
+document.getElementById("waNumber")
+.value
+.replace(/\D/g,"");
+
+const message=
+encodeURIComponent(
+document.getElementById("waMessage").value
+);
+
+if(!number){
+
+alert("WhatsApp number डालो।");
+return;
+
 }
+
+new QRCode(box,{
+text:`https://wa.me/${number}?text=${message}`,
+width:220,
+height:220,
+correctLevel:QRCode.CorrectLevel.H
+});
+
+}
+
+
+/* =========================
+   VCARD
+========================= */
+
 function makeVCardQR(){
-let b=document.getElementById("vcQR");b.innerHTML="";
-let t=`BEGIN:VCARD\nVERSION:3.0\nFN:${vcName.value}\nTEL:${vcPhone.value}\nEMAIL:${vcEmail.value}\nEND:VCARD`;
-new QRCode(b,{text:t,width:200,height:200});
+
+const box=document.getElementById("vcQR");
+
+box.innerHTML="";
+
+const name=document.getElementById("vcName").value;
+const phone=document.getElementById("vcPhone").value;
+const email=document.getElementById("vcEmail").value;
+
+const text=
+`BEGIN:VCARD
+VERSION:3.0
+FN:${name}
+TEL:${phone}
+EMAIL:${email}
+END:VCARD`;
+
+new QRCode(box,{
+text:text,
+width:220,
+height:220,
+correctLevel:QRCode.CorrectLevel.H
+});
+
 }
 
-/* LONG TEXT ONE QR */
+
+/* =========================
+   LONG TEXT ONE QR
+========================= */
+
 async function createLongTextQR(){
-let text=document.getElementById("longTextInput").value;
-let title=document.getElementById("longTextTitle").value||"QR KING PRO Text";
-let status=document.getElementById("longTextStatus");
-let box=document.getElementById("longTextQR");
-let link=document.getElementById("longTextLink");
-let down=document.getElementById("downloadLongQR");
 
-if(!text.trim()){status.textContent="❌ पहले पूरा text paste करो।";return}
+const text=
+document.getElementById("longTextInput").value;
 
-status.textContent="⏳ Text online save हो रहा है...";
-box.innerHTML="";link.style.display="none";down.style.display="none";
+const title=
+document.getElementById("longTextTitle").value
+||"QR KING PRO Text";
+
+const status=
+document.getElementById("longTextStatus");
+
+const box=
+document.getElementById("longTextQR");
+
+const link=
+document.getElementById("longTextLink");
+
+const down=
+document.getElementById("downloadLongQR");
+
+if(!text.trim()){
+
+status.textContent=
+"❌ पहले पूरा text paste करो।";
+
+return;
+
+}
+
+status.textContent=
+"⏳ Text online save हो रहा है...";
+
+box.innerHTML="";
+link.style.display="none";
+down.style.display="none";
 
 try{
-let r=await fetch("https://sharenotes.dev/api/v1/notes",{
+
+const r=
+await fetch(
+"https://sharenotes.dev/api/v1/notes",
+{
 method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({content:text,title:title})
-});
-if(!r.ok)throw new Error(r.status===429?"आज की free limit पूरी हो गई है।":"Text save नहीं हो पाया।");
-let d=await r.json();
-if(!d.url)throw new Error("Share link नहीं मिला।");
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+content:text,
+title:title
+})
+}
+);
 
-new QRCode(box,{text:d.url,width:220,height:220});
+if(!r.ok){
+
+throw new Error(
+r.status===429
+?"आज की free limit पूरी हो गई है।"
+:"Text save नहीं हो पाया।"
+);
+
+}
+
+const d=await r.json();
+
+if(!d.url){
+
+throw new Error(
+"Share link नहीं मिला।"
+);
+
+}
+
+new QRCode(box,{
+text:d.url,
+width:240,
+height:240,
+correctLevel:QRCode.CorrectLevel.H
+});
+
 link.style.display="block";
-link.innerHTML=`<b>✅ QR तैयार है</b><br><br><a href="${esc(d.url)}" target="_blank" style="color:#00eaff;word-break:break-all">${esc(d.url)}</a>`;
+
+link.innerHTML=
+`<b>✅ QR तैयार है</b><br><br>
+<a href="${esc(d.url)}"
+target="_blank"
+rel="noopener"
+style="color:#00eaff;word-break:break-all">
+${esc(d.url)}
+</a>`;
+
 down.style.display="inline-block";
-status.textContent="✅ 1 QR Code तैयार है।";
-}catch(e){status.textContent="❌ "+e.message}
-}
-function downloadLongTextQR(){
-let i=document.querySelector("#longTextQR img");if(!i)return;
-let a=document.createElement("a");a.href=i.src;a.download="QR-KING-PRO-LONG-TEXT.png";a.click();
+
+status.textContent=
+"✅ One QR Code तैयार है।";
+
+}catch(e){
+
+status.textContent=
+"❌ "+e.message;
+
 }
 
-/* BARCODE */
+}
+
+
+/* LONG QR DOWNLOAD */
+
+async function downloadLongTextQR(){
+
+const box=
+document.getElementById("longTextQR");
+
+const canvas=
+box.querySelector("canvas");
+
+const img=
+box.querySelector("img");
+
+if(!canvas && !img){
+
+alert("पहले QR बनाओ।");
+
+return;
+
+}
+
+try{
+
+let blob;
+
+if(canvas){
+
+blob=
+await new Promise(resolve=>{
+canvas.toBlob(resolve,"image/png");
+});
+
+}else{
+
+const r=await fetch(img.src);
+blob=await r.blob();
+
+}
+
+const url=
+URL.createObjectURL(blob);
+
+const a=document.createElement("a");
+
+a.href=url;
+a.download="QR-KING-PRO-LONG-TEXT.png";
+
+document.body.appendChild(a);
+a.click();
+a.remove();
+
+setTimeout(()=>{
+URL.revokeObjectURL(url);
+},2000);
+
+}catch(e){
+
+alert("QR download नहीं हो पाया।");
+
+}
+
+}
+
+
+/* =========================
+   BARCODE
+========================= */
+
 function generateBarcode(){
-let v=barcodeText.value.trim();if(!v)return alert("Barcode value डालो");
-let t=barcodeType.value;
-try{
-JsBarcode("#barcodeSVG",v,{
-format:t==="UPC"?"upc":t==="UPCE"?"upce":t==="EAN13"?"ean13":t==="EAN8"?"ean8":t==="CODE39"?"CODE39":t==="ITF14"?"ITF14":t==="codabar"?"codabar":"CODE128",
-width:+barWidth.value||2,height:+barHeight.value||80,
-displayValue:barText.checked,margin:10
-});
-}catch(e){alert("इस format के लिए सही value डालो।")}
+
+const value=
+document.getElementById("barcodeText")
+.value.trim();
+
+if(!value){
+
+alert("Barcode value डालो।");
+return;
+
 }
+
+const type=
+document.getElementById("barcodeType").value;
+
+let format="CODE128";
+
+if(type==="UPC")format="upc";
+else if(type==="UPCE")format="upce";
+else if(type==="EAN13")format="ean13";
+else if(type==="EAN8")format="ean8";
+else if(type==="CODE39")format="CODE39";
+else if(type==="ITF14")format="ITF14";
+else if(type==="codabar")format="codabar";
+
+try{
+
+JsBarcode(
+"#barcodeSVG",
+value,
+{
+format:format,
+width:+document.getElementById("barWidth").value||2,
+height:+document.getElementById("barHeight").value||80,
+displayValue:
+document.getElementById("barText").checked,
+margin:10
+}
+);
+
+}catch(e){
+
+alert(
+"इस format के लिए सही value डालो।"
+);
+
+}
+
+}
+
+
+/* BARCODE DOWNLOAD */
+
 function downloadBarcode(){
-let s=document.getElementById("barcodeSVG");if(!s.innerHTML)return alert("पहले barcode बनाओ");
-let b=new Blob([new XMLSerializer().serializeToString(s)],{type:"image/svg+xml"});
-let a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="barcode.svg";a.click();
+
+const svg=
+document.getElementById("barcodeSVG");
+
+if(!svg.innerHTML){
+
+alert("पहले barcode बनाओ।");
+return;
+
 }
 
-/* CAMERA SCANNER */
-let barcodeReader=null,barcodeControls=null;
+const data=
+new XMLSerializer()
+.serializeToString(svg);
+
+const blob=
+new Blob(
+[data],
+{type:"image/svg+xml;charset=utf-8"}
+);
+
+const url=
+URL.createObjectURL(blob);
+
+const a=document.createElement("a");
+
+a.href=url;
+a.download="QR-KING-PRO-barcode.svg";
+
+document.body.appendChild(a);
+a.click();
+a.remove();
+
+setTimeout(()=>{
+URL.revokeObjectURL(url);
+},1500);
+
+}
+
+
+/* =========================
+   CAMERA SCANNER
+========================= */
+
+let barcodeReader=null;
+let barcodeControls=null;
+
 async function startBarcodeCamera(){
-let out=cameraScanResult;
+
+const out=
+document.getElementById("cameraScanResult");
+
 try{
-if(typeof ZXingBrowser==="undefined")throw Error("Scanner library load नहीं हुई");
-barcodeReader=new ZXingBrowser.BrowserMultiFormatReader();
-barcodeControls=await barcodeReader.decodeFromConstraints(
-{audio:false,video:{facingMode:{ideal:"environment"}}},
-barcodeVideo,(result)=>{
+
+if(typeof ZXingBrowser==="undefined"){
+
+throw new Error(
+"Scanner library load नहीं हुई"
+);
+
+}
+
+barcodeReader=
+new ZXingBrowser.BrowserMultiFormatReader();
+
+barcodeControls=
+await barcodeReader.decodeFromConstraints(
+
+{
+audio:false,
+video:{
+facingMode:{
+ideal:"environment"
+}
+}
+},
+
+document.getElementById("barcodeVideo"),
+
+(result)=>{
+
 if(result){
-out.innerHTML="✅ <b>Found:</b><br>"+esc(result.getText());
-if(navigator.vibrate)navigator.vibrate(150);
+
+out.innerHTML=
+"✅ <b>Barcode Found:</b><br>"
++esc(result.getText());
+
+if(navigator.vibrate){
+navigator.vibrate(150);
+}
+
 stopBarcodeCamera();
+
 }
-});
-out.textContent="📷 Camera चालू है — barcode सामने रखें।";
-}catch(e){out.textContent="❌ Camera शुरू नहीं हुआ। Permission Allow करें।"}
+
 }
+);
+
+out.textContent=
+"📷 Camera चालू है — barcode सामने रखें।";
+
+}catch(e){
+
+console.error(e);
+
+out.textContent=
+"❌ Camera शुरू नहीं हुआ। Permission Allow करें।";
+
+}
+
+}
+
+
 function stopBarcodeCamera(){
+
 try{
-if(barcodeControls){barcodeControls.stop();barcodeControls=null}
-if(barcodeVideo.srcObject){barcodeVideo.srcObject.getTracks().forEach(t=>t.stop());barcodeVideo.srcObject=null}
+
+if(barcodeControls){
+
+barcodeControls.stop();
+barcodeControls=null;
+
+}
+
+const video=
+document.getElementById("barcodeVideo");
+
+if(video && video.srcObject){
+
+video.srcObject
+.getTracks()
+.forEach(track=>track.stop());
+
+video.srcObject=null;
+
+}
+
 }catch(e){}
+
 }
+
+
+/* =========================
+   IMAGE BARCODE
+========================= */
+
 async function scanBarcodeImage(){
-let f=barcodeImage.files[0];if(!f)return;
-barcodePreview.src=URL.createObjectURL(f);barcodePreview.style.display="block";
+
+const input=
+document.getElementById("barcodeImage");
+
+const file=input.files[0];
+
+if(!file)return;
+
+const preview=
+document.getElementById("barcodePreview");
+
+preview.src=
+URL.createObjectURL(file);
+
+preview.style.display="block";
+
+const output=
+document.getElementById("imageScanResult");
+
 try{
-let r=new ZXingBrowser.BrowserMultiFormatReader();
-let x=await r.decodeFromImageUrl(barcodePreview.src);
-imageScanResult.innerHTML="✅ <b>Found:</b><br>"+esc(x.getText());
-}catch(e){imageScanResult.textContent="❌ QR/Barcode नहीं मिला।"}
+
+if(typeof ZXingBrowser==="undefined"){
+
+throw new Error("Scanner library missing");
+
 }
 
-/* BATCH */
+const reader=
+new ZXingBrowser.BrowserMultiFormatReader();
+
+const result=
+await reader.decodeFromImageUrl(
+preview.src
+);
+
+output.innerHTML=
+"✅ <b>Found:</b><br>"
++esc(result.getText());
+
+}catch(e){
+
+output.textContent=
+"❌ QR/Barcode नहीं मिला।";
+
+}
+
+}
+
+
+/* =========================
+   BATCH BARCODE
+========================= */
+
 function batchBarcodeGenerate(){
-batchResult.innerHTML="";
-batchBarcode.value.split("\n").map(x=>x.trim()).filter(Boolean).forEach(v=>{
-let d=document.createElement("div");d.className="barbox";let s=document.createElementNS("http://www.w3.org/2000/svg","svg");d.appendChild(s);batchResult.appendChild(d);
-try{JsBarcode(s,v,{format:"CODE128",width:2,height:70,displayValue:true})}catch(e){}
-});
-}
-function makeLabel(){
-labelResult.innerHTML=`<b>${esc(labelProduct.value)}</b><br>Price: ₹${esc(labelPrice.value)}<br>Barcode: ${esc(labelCode.value)}`;
-}
-function validateBarcode(){
-let c=validateCode.value.trim(),o=validateResult;
-if(!/^\d+$/.test(c)||![8,12,13].includes(c.length)){o.textContent="EAN-8, UPC-A या EAN-13 number डालें";return}
-let sum=0;
-for(let i=0;i<c.length-1;i++)sum+=((c.length-i)%2===0?+c[i]*3:+c[i]);
-o.textContent=((10-sum%10)%10===+c[c.length-1])?"✅ Checksum सही है":"❌ Checksum गलत है";
-}
 
-/* CALCULATORS */
-function calculate(){
+const result=
+document.getElementById("batchResult");
+
+result.innerHTML="";
+
+const values=
+document.getElementById("batchBarcode")
+.value
+.split("\n")
+.map(x=>x.trim())
+.filter(Boolean);
+
+values.forEach(value=>{
+
+const box=
+document.createElement("div");
+
+box.className="barbox";
+
+const svg=
+document.createElementNS(
+"http://www.w3.org/2000/svg",
+"svg"
+);
+
+box.appendChild(svg);
+
+result.appendChild(box);
+
 try{
-let x=calcInput.value;if(!/^[0-9+\-*/().%\s]+$/.test(x))throw 0;
-calcResult.textContent=Function("return "+x)();
-}catch(e){calcResult.textContent="Invalid calculation"}
-}
-function percentage(){percentResult.textContent=+percentA.value*+percentB.value/100}
-function gstCalc(){
-let a=+gstAmount.value,r=+gstRate.value,g=a*r/100,h=g/2;
-gstResult.innerHTML=`GST: ₹${g.toFixed(2)}<br>CGST: ₹${h.toFixed(2)}<br>SGST: ₹${h.toFixed(2)}<br>Total: ₹${(a+g).toFixed(2)}`;
-}
-function discountCalc(){let p=+disPrice.value,d=p*+disPercent.value/100;disResult.innerHTML=`Discount: ₹${d.toFixed(2)}<br>Final: ₹${(p-d).toFixed(2)}`}
-function emiCalc(){
-let p=+emiP.value,r=+emiR.value/1200,n=+emiN.value;
-let e=r?p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):p/n;
-emiResult.textContent="Monthly EMI: ₹"+e.toFixed(2);
-}
-function ageCalc(){
-let d=new Date(dob.value),n=new Date(),a=n.getFullYear()-d.getFullYear(),m=n.getMonth()-d.getMonth();
-if(m<0||(m===0&&n.getDate()<d.getDate()))a--;
-ageResult.textContent="Age: "+a+" years";
-}
-function unitConvert(){
-let v=+unitValue.value,t=unitType.value,r=t==="kmmi"?v*.621371:t==="mft"?v*3.28084:t==="kgp"?v*2.20462:v*.393701;
-unitResult.textContent=r;
-}
 
-/* OTHER TOOLS */
-function imageToBase64(){
-let f=imgBase64.files[0];if(!f)return;let r=new FileReader();r.onload=()=>base64Result.value=r.result;r.readAsDataURL(f);
-}
-function upperText(){textTool.value=textTool.value.toUpperCase()}
-function lowerText(){textTool.value=textTool.value.toLowerCase()}
-function copyText(){navigator.clipboard.writeText(textTool.value)}
-function saveNotes(){localStorage.setItem("qrking_notes",notes.value);alert("Notes saved")}
-function loadNotes(){notes.value=localStorage.getItem("qrking_notes")||""}
-
-let todos=JSON.parse(localStorage.getItem("qrking_todos")||"[]");
-function renderTodos(){
-todoList.innerHTML="";
-todos.forEach((x,i)=>{
-let d=document.createElement("div");d.innerHTML="☐ "+esc(x)+" <button onclick='removeTodo("+i+")' style='float:right;background:#ff3155;color:#fff'>×</button>";todoList.appendChild(d);
+JsBarcode(svg,value,{
+format:"CODE128",
+width:2,
+height:70,
+displayValue:true
 });
+
+}catch(e){}
+
+});
+
 }
-function addTodo(){let x=todoInput.value.trim();if(!x)return;todos.push(x);localStorage.setItem("qrking_todos",JSON.stringify(todos));todoInput.value="";renderTodos()}
-function removeTodo(i){todos.splice(i,1);localStorage.setItem("qrking_todos",JSON.stringify(todos));renderTodos()}
+
+
+/* =========================
+   PRODUCT LABEL
+========================= */
+
+function makeLabel(){
+
+document.getElementById("labelResult")
+.innerHTML=
+`🏷️ <b>${esc(document.getElementById("labelProduct").value)}</b>
+<br>💰 Price: ₹${esc(document.getElementById("labelPrice").value)}
+<br>🔳 Barcode: ${esc(document.getElementById("labelCode").value)}`;
+
+}
+
+
+/* =========================
+   CHECKSUM
+========================= */
+
+function validateBarcode(){
+
+const code=
+document.getElementById("validateCode")
+.value.trim();
+
+const output=
+document.getElementById("validateResult");
+
+if(
+!/^\d+$/.test(code) ||
+![8,12,13].includes(code.length)
+){
+
+output.textContent=
+"EAN-8, UPC-A या EAN-13 number डालें";
+
+return;
+
+}
+
+let sum=0;
+
+for(let i=0;i<code.length-1;i++){
+
+sum+=
+((code.length-i)%2===0
+?+code[i]*3
+:+code[i]);
+
+}
+
+const check=
+(10-sum%10)%10;
+
+output.textContent=
+check===+code[code.length-1]
+?"✅ Checksum सही है"
+:"❌ Checksum गलत है";
+
+}
+
+
+/* =========================
+   CALCULATOR
+========================= */
+
+function calculate(){
+
+try{
+
+const x=
+document.getElementById("calcInput").value;
+
+if(!/^[0-9+\-*/().%\s]+$/.test(x))
+throw new Error();
+
+document.getElementById("calcResult")
+.textContent=
+Function("return "+x)();
+
+}catch(e){
+
+document.getElementById("calcResult")
+.textContent=
+"❌ Invalid calculation";
+
+}
+
+}
+
+
+/* PERCENTAGE */
+
+function percentage(){
+
+document.getElementById("percentResult")
+.textContent=
+(+document.getElementById("percentA").value*
+ +document.getElementById("percentB").value/100);
+
+}
+
+
+/* GST */
+
+function gstCalc(){
+
+const amount=
++document.getElementById("gstAmount").value;
+
+const rate=
++document.getElementById("gstRate").value;
+
+const gst=
+amount*rate/100;
+
+const half=gst/2;
+
+document.getElementById("gstResult")
+.innerHTML=
+`GST: ₹${gst.toFixed(2)}
+<br>CGST: ₹${half.toFixed(2)}
+<br>SGST: ₹${half.toFixed(2)}
+<br>Total: ₹${(amount+gst).toFixed(2)}`;
+
+}
+
+
+/* DISCOUNT */
+
+function discountCalc(){
+
+const price=
++document.getElementById("disPrice").value;
+
+const percent=
++document.getElementById("disPercent").value;
+
+const discount=
+price*percent/100;
+
+document.getElementById("disResult")
+.innerHTML=
+`Discount: ₹${discount.toFixed(2)}
+<br>Final Price: ₹${(price-discount).toFixed(2)}`;
+
+}
+
+
+/* EMI */
+
+function emiCalc(){
+
+const p=
++document.getElementById("emiP").value;
+
+const r=
++document.getElementById("emiR").value/1200;
+
+const n=
++document.getElementById("emiN").value;
+
+const emi=
+r
+?p*r*Math.pow(1+r,n)/
+ (Math.pow(1+r,n)-1)
+:p/n;
+
+document.getElementById("emiResult")
+.textContent=
+"Monthly EMI: ₹"+emi.toFixed(2);
+
+}
+
+
+/* AGE */
+
+function ageCalc(){
+
+const value=
+document.getElementById("dob").value;
+
+if(!value)return;
+
+const dob=new Date(value);
+const now=new Date();
+
+let age=
+now.getFullYear()-
+dob.getFullYear();
+
+const month=
+now.getMonth()-
+dob.getMonth();
+
+if(
+month<0 ||
+(month===0 &&
+now.getDate()<dob.getDate())
+){
+
+age--;
+
+}
+
+document.getElementById("ageResult")
+.textContent=
+"Age: "+age+" years";
+
+}
+
+
+/* UNIT */
+
+function unitConvert(){
+
+const v=
++document.getElementById("unitValue").value;
+
+const type=
+document.getElementById("unitType").value;
+
+let result;
+
+if(type==="kmmi")result=v*.621371;
+else if(type==="mft")result=v*3.28084;
+else if(type==="kgp")result=v*2.20462;
+else result=v*.393701;
+
+document.getElementById("unitResult")
+.textContent=
+result;
+
+}
+
+
+/* =========================
+   IMAGE BASE64
+========================= */
+
+function imageToBase64(){
+
+const file=
+document.getElementById("imgBase64")
+.files[0];
+
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=()=>{
+document.getElementById("base64Result")
+.value=reader.result;
+};
+
+reader.readAsDataURL(file);
+
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+function upperText(){
+
+const el=
+document.getElementById("textTool");
+
+el.value=
+el.value.toUpperCase();
+
+}
+
+function lowerText(){
+
+const el=
+document.getElementById("textTool");
+
+el.value=
+el.value.toLowerCase();
+
+}
+
+function copyText(){
+
+navigator.clipboard
+.writeText(
+document.getElementById("textTool").value
+);
+
+}
+
+
+/* =========================
+   NOTES
+========================= */
+
+function saveNotes(){
+
+localStorage.setItem(
+"qrking_notes",
+document.getElementById("notes").value
+);
+
+alert("✅ Notes saved");
+
+}
+
+function loadNotes(){
+
+document.getElementById("notes").value=
+localStorage.getItem("qrking_notes")||"";
+
+}
+
+
+/* =========================
+   TODO
+========================= */
+
+let todos=
+JSON.parse(
+localStorage.getItem("qrking_todos")||"[]"
+);
+
+function renderTodos(){
+
+const list=
+document.getElementById("todoList");
+
+list.innerHTML="";
+
+todos.forEach((item,index)=>{
+
+const div=
+document.createElement("div");
+
+div.innerHTML=
+"☐ "+esc(item)+
+` <button
+onclick="removeTodo(${index})"
+style="float:right;background:#ff3155;color:#fff">
+×
+</button>`;
+
+list.appendChild(div);
+
+});
+
+}
+
+function addTodo(){
+
+const input=
+document.getElementById("todoInput");
+
+const value=input.value.trim();
+
+if(!value)return;
+
+todos.push(value);
+
+localStorage.setItem(
+"qrking_todos",
+JSON.stringify(todos)
+);
+
+input.value="";
+
+renderTodos();
+
+}
+
+function removeTodo(index){
+
+todos.splice(index,1);
+
+localStorage.setItem(
+"qrking_todos",
+JSON.stringify(todos)
+);
+
+renderTodos();
+
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
 
 function generatePassword(){
-let n=Math.max(4,Math.min(100,+passLength.value||16)),c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=",s="";
-for(let i=0;i<n;i++)s+=c[Math.floor(Math.random()*c.length)];
-passResult.textContent=s;
+
+const length=
+Math.max(
+4,
+Math.min(
+100,
++document.getElementById("passLength").value||16
+)
+);
+
+const chars=
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=";
+
+let password="";
+
+for(let i=0;i<length;i++){
+
+password+=
+chars[
+Math.floor(
+Math.random()*chars.length
+)
+];
+
 }
-function generateUUID(){uuidResult.textContent=crypto.randomUUID?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>(c==="x"?Math.random()*16|0:(Math.random()*16|0&3)|8).toString(16))}
-function formatJSON(){try{jsonResult.textContent=JSON.stringify(JSON.parse(jsonInput.value),null,2)}catch(e){jsonResult.textContent="Invalid JSON"}}
-function minifyJSON(){try{jsonResult.textContent=JSON.stringify(JSON.parse(jsonInput.value))}catch(e){jsonResult.textContent="Invalid JSON"}}
-function baseEncode(){baseResult.textContent=btoa(unescape(encodeURIComponent(baseInput.value)))}
-function baseDecode(){try{baseResult.textContent=decodeURIComponent(escape(atob(baseInput.value)))}catch(e){baseResult.textContent="Invalid Base64"}}
-function urlEncode(){urlResult.textContent=encodeURIComponent(urlInput.value)}
-function urlDecode(){try{urlResult.textContent=decodeURIComponent(urlInput.value)}catch(e){urlResult.textContent="Invalid"}}
-function colorConvert(){let h=colorInput.value;let r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);colorResult.textContent=`${h} → rgb(${r}, ${g}, ${b})`}
-function gradientGen(){let x=`linear-gradient(90deg,${g1.value},${g2.value})`;gradientResult.textContent=x;gradientResult.style.background=x}
 
-/* STOPWATCH */
-let sw=0,swTimer=null;
-function swShow(){let h=String(Math.floor(sw/3600)).padStart(2,"0"),m=String(Math.floor(sw%3600/60)).padStart(2,"0"),s=String(sw%60).padStart(2,"0");stopwatch.textContent=`${h}:${m}:${s}`}
-function startStopwatch(){if(swTimer)return;swTimer=setInterval(()=>{sw++;swShow()},1000)}
-function stopStopwatch(){clearInterval(swTimer);swTimer=null}
-function resetStopwatch(){stopStopwatch();sw=0;swShow()}
+document.getElementById("passResult")
+.textContent=password;
 
-/* COUNTDOWN */
-let cd;
-function startCountdown(){
-clearInterval(cd);let s=+countSeconds.value||0;
-cd=setInterval(()=>{
-countResult.textContent=`${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
-if(s<=0){clearInterval(cd);alert("Countdown complete!")}s--;
+}
+
+
+/* =========================
+   UUID
+========================= */
+
+function generateUUID(){
+
+let result;
+
+if(
+window.crypto &&
+typeof crypto.randomUUID==="function"
+){
+
+result=crypto.randomUUID();
+
+}else{
+
+result=
+"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+.replace(/[xy]/g,function(c){
+
+const r=
+Math.random()*16|0;
+
+const v=
+c==="x"
+?r
+:(r&3)|8;
+
+return v.toString(16);
+
+});
+
+}
+
+document.getElementById("uuidResult")
+.textContent=result;
+
+}
+
+
+/* =========================
+   JSON
+========================= */
+
+function formatJSON(){
+
+try{
+
+const data=
+JSON.parse(
+document.getElementById("jsonInput").value
+);
+
+document.getElementById("jsonResult")
+.textContent=
+JSON.stringify(data,null,2);
+
+}catch(e){
+
+document.getElementById("jsonResult")
+.textContent="❌ Invalid JSON";
+
+}
+
+}
+
+function minifyJSON(){
+
+try{
+
+const data=
+JSON.parse(
+document.getElementById("jsonInput").value
+);
+
+document.getElementById("jsonResult")
+.textContent=
+JSON.stringify(data);
+
+}catch(e){
+
+document.getElementById("jsonResult")
+.textContent="❌ Invalid JSON";
+
+}
+
+}
+
+
+/* =========================
+   BASE64
+========================= */
+
+function baseEncode(){
+
+document.getElementById("baseResult")
+.textContent=
+btoa(
+unescape(
+encodeURIComponent(
+document.getElementById("baseInput").value
+)
+)
+);
+
+}
+
+function baseDecode(){
+
+try{
+
+document.getElementById("baseResult")
+.textContent=
+decodeURIComponent(
+escape(
+atob(
+document.getElementById("baseInput").value
+)
+)
+);
+
+}catch(e){
+
+document.getElementById("baseResult")
+.textContent=
+"❌ Invalid Base64";
+
+}
+
+}
+
+
+/* =========================
+   URL
+========================= */
+
+function urlEncode(){
+
+document.getElementById("urlResult")
+.textContent=
+encodeURIComponent(
+document.getElementById("urlInput").value
+);
+
+}
+
+function urlDecode(){
+
+try{
+
+document.getElementById("urlResult")
+.textContent=
+decodeURIComponent(
+document.getElementById("urlInput").value
+);
+
+}catch(e){
+
+document.getElementById("urlResult")
+.textContent=
+"❌ Invalid URL encoded text";
+
+}
+
+}
+
+
+/* =========================
+   COLOR
+========================= */
+
+function colorConvert(){
+
+const hex=
+document.getElementById("colorInput").value;
+
+const r=
+parseInt(hex.slice(1,3),16);
+
+const g=
+parseInt(hex.slice(3,5),16);
+
+const b=
+parseInt(hex.slice(5,7),16);
+
+document.getElementById("colorResult")
+.textContent=
+`${hex} → rgb(${r}, ${g}, ${b})`;
+
+}
+
+
+/* =========================
+   GRADIENT
+========================= */
+
+function gradientGen(){
+
+const gradient=
+`linear-gradient(
+90deg,
+${document.getElementById("g1").value},
+${document.getElementById("g2").value}
+)`;
+
+const result=
+document.getElementById("gradientResult");
+
+result.textContent=gradient;
+result.style.background=gradient;
+result.style.color="#fff";
+
+}
+
+
+/* =========================
+   STOPWATCH
+========================= */
+
+let sw=0;
+let swTimer=null;
+
+function swShow(){
+
+const h=
+String(
+Math.floor(sw/3600)
+).padStart(2,"0");
+
+const m=
+String(
+Math.floor(sw%3600/60)
+).padStart(2,"0");
+
+const s=
+String(
+sw%60
+).padStart(2,"0");
+
+document.getElementById("stopwatch")
+.textContent=
+`${h}:${m}:${s}`;
+
+}
+
+function startStopwatch(){
+
+if(swTimer)return;
+
+swTimer=
+setInterval(()=>{
+sw++;
+swShow();
 },1000);
-}
-function updateClock(){digitalClock.textContent=new Date().toLocaleTimeString()}
 
-/* ESCAPE */
-function esc(x){return String(x).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+}
+
+function stopStopwatch(){
+
+clearInterval(swTimer);
+swTimer=null;
+
+}
+
+function resetStopwatch(){
+
+stopStopwatch();
+
+sw=0;
+
+swShow();
+
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+let cd=null;
+
+function startCountdown(){
+
+clearInterval(cd);
+
+let seconds=
++document.getElementById("countSeconds").value||0;
+
+cd=
+setInterval(()=>{
+
+document.getElementById("countResult")
+.textContent=
+`${String(
+Math.floor(seconds/60)
+).padStart(2,"0")}:${String(
+seconds%60
+).padStart(2,"0")}`;
+
+if(seconds<=0){
+
+clearInterval(cd);
+
+alert("⏰ Countdown complete!");
+
+}
+
+seconds--;
+
+},1000);
+
+}
+
+
+/* =========================
+   CLOCK
+========================= */
+
+function updateClock(){
+
+document.getElementById("digitalClock")
+.textContent=
+new Date()
+.toLocaleTimeString();
+
+}
+
+
+/* =========================
+   ESCAPE
+========================= */
+
+function esc(value){
+
+return String(value)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
 </script>
 
 </body>
